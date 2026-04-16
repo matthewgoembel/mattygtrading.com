@@ -3,1371 +3,425 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GM Trading | MattyG - Trading Mentorship & Community</title>
+    <title>GM Trading | MattyG</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg-primary: #0a0a0f;
-            --bg-secondary: #111118;
-            --bg-card: #16161f;
-            --bg-card-hover: #1c1c28;
-            --accent: #00d4aa;
-            --accent-dim: #00d4aa22;
-            --accent-glow: #00d4aa44;
-            --gold: #f0c040;
-            --gold-dim: #f0c04022;
-            --text-primary: #f0f0f5;
-            --text-secondary: #8888a0;
-            --text-muted: #55556a;
-            --border: #22222f;
-            --gradient-1: linear-gradient(135deg, #00d4aa, #0088ff);
-            --gradient-2: linear-gradient(135deg, #f0c040, #ff6b35);
-            --font-display: 'Outfit', sans-serif;
-            --font-mono: 'Space Mono', monospace;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent) var(--bg-primary);
-        }
-
-        body {
-            font-family: var(--font-display);
-            background: var(--bg-primary);
-            color: var(--text-primary);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-        }
-
-        /* ===== NAVBAR ===== */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(20px);
-            background: rgba(10, 10, 15, 0.85);
-            border-bottom: 1px solid var(--border);
-            transition: all 0.3s ease;
-        }
-
-        .navbar.scrolled {
-            padding: 0.7rem 2rem;
-            background: rgba(10, 10, 15, 0.95);
-        }
-
-        .nav-logo {
-            font-family: var(--font-mono);
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--accent);
-            text-decoration: none;
-            letter-spacing: -0.5px;
-        }
-
-        .nav-logo span {
-            color: var(--text-primary);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: color 0.3s;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .nav-cta {
-            background: var(--gradient-1) !important;
-            color: var(--bg-primary) !important;
-            padding: 0.6rem 1.4rem;
-            border-radius: 6px;
-            font-weight: 700 !important;
-            font-size: 0.85rem !important;
-            transition: transform 0.2s, box-shadow 0.2s !important;
-        }
-
-        .nav-cta:hover {
-            transform: translateY(-1px);
-            box-shadow: 0 4px 20px var(--accent-glow);
-        }
-
-        .mobile-toggle {
-            display: none;
-            flex-direction: column;
-            gap: 5px;
-            cursor: pointer;
-            z-index: 1001;
-        }
-
-        .mobile-toggle span {
-            width: 24px;
-            height: 2px;
-            background: var(--text-primary);
-            transition: all 0.3s;
-        }
-
-        /* ===== HERO ===== */
-        .hero {
-            min-height: 100vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            padding: 8rem 2rem 4rem;
-            overflow: hidden;
-        }
-
-        .hero-bg {
-            position: absolute;
-            inset: 0;
-            background: 
-                radial-gradient(ellipse 80% 60% at 50% 0%, var(--accent-dim) 0%, transparent 60%),
-                radial-gradient(ellipse 60% 40% at 80% 80%, rgba(240, 192, 64, 0.06) 0%, transparent 50%);
-            pointer-events: none;
-        }
-
-        .hero-grid {
-            position: absolute;
-            inset: 0;
-            background-image: 
-                linear-gradient(var(--border) 1px, transparent 1px),
-                linear-gradient(90deg, var(--border) 1px, transparent 1px);
-            background-size: 60px 60px;
-            opacity: 0.3;
-            mask-image: radial-gradient(ellipse 70% 50% at 50% 50%, black 20%, transparent 70%);
-            pointer-events: none;
-        }
-
-        .hero-content {
-            text-align: center;
-            max-width: 900px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--accent-dim);
-            border: 1px solid var(--accent-glow);
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            color: var(--accent);
-            margin-bottom: 2rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            animation: fadeInDown 0.8s ease-out;
-        }
-
-        .hero-badge .dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: var(--accent);
-            animation: pulse 2s infinite;
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 7vw, 5.5rem);
-            font-weight: 900;
-            line-height: 1.05;
-            margin-bottom: 1.5rem;
-            letter-spacing: -2px;
-            animation: fadeInUp 0.8s ease-out 0.1s both;
-        }
-
-        .hero h1 .highlight {
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-sub {
-            font-size: 1.2rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            margin: 0 auto 2.5rem;
-            line-height: 1.7;
-            font-weight: 400;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-
-        .hero-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-            animation: fadeInUp 0.8s ease-out 0.3s both;
-        }
-
-        .btn-primary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--gradient-1);
-            color: var(--bg-primary);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 1rem;
-            text-decoration: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-            border: none;
-            cursor: pointer;
-            font-family: var(--font-display);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 30px var(--accent-glow);
-        }
-
-        .btn-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: transparent;
-            color: var(--text-primary);
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 1rem;
-            text-decoration: none;
-            border: 1px solid var(--border);
-            transition: all 0.3s;
-            cursor: pointer;
-            font-family: var(--font-display);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--text-secondary);
-            background: var(--bg-card);
-        }
-
-        .hero-stats {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            margin-top: 4rem;
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-
-        .hero-stat {
-            text-align: center;
-        }
-
-        .hero-stat .number {
-            font-family: var(--font-mono);
-            font-size: 1.8rem;
-            font-weight: 700;
-            color: var(--accent);
-        }
-
-        .hero-stat .label {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-            margin-top: 0.3rem;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        /* ===== SECTION COMMON ===== */
-        section {
-            padding: 6rem 2rem;
-            position: relative;
-        }
-
-        .section-container {
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-family: var(--font-mono);
-            font-size: 0.75rem;
-            color: var(--accent);
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 1rem;
-        }
-
-        .section-title {
-            font-size: clamp(2rem, 4vw, 3rem);
-            font-weight: 800;
-            letter-spacing: -1px;
-            margin-bottom: 1.2rem;
-            line-height: 1.1;
-        }
-
-        .section-desc {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            max-width: 600px;
-            line-height: 1.7;
-            margin-bottom: 3rem;
-        }
-
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--border), transparent);
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* ===== ABOUT ===== */
-        #about {
-            background: var(--bg-secondary);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 4rem;
-            align-items: center;
-        }
-
-        .about-image {
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 4/5;
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-        }
-
-        .about-image-placeholder {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            color: var(--text-muted);
-            background: linear-gradient(135deg, var(--bg-card), var(--bg-primary));
-        }
-
-        .about-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .about-text h2 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            letter-spacing: -1px;
-            line-height: 1.1;
-        }
-
-        .about-text h2 .highlight {
-            color: var(--accent);
-        }
-
-        .about-text p {
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 1.2rem;
-            font-size: 1.05rem;
-        }
-
-        .about-tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.6rem;
-            margin-top: 2rem;
-        }
-
-        .about-tag {
-            background: var(--bg-primary);
-            border: 1px solid var(--border);
-            padding: 0.4rem 1rem;
-            border-radius: 100px;
-            font-size: 0.8rem;
-            color: var(--text-secondary);
-            font-weight: 500;
-        }
-
-        /* ===== APPROACH ===== */
-        .approach-cards {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .approach-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            transition: all 0.3s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .approach-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 2px;
-            background: var(--gradient-1);
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .approach-card:hover {
-            background: var(--bg-card-hover);
-            border-color: var(--accent-glow);
-            transform: translateY(-4px);
-        }
-
-        .approach-card:hover::before {
-            opacity: 1;
-        }
-
-        .approach-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            background: var(--accent-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 1.2rem;
-            font-size: 1.3rem;
-        }
-
-        .approach-card h3 {
-            font-size: 1.2rem;
-            font-weight: 700;
-            margin-bottom: 0.8rem;
-        }
-
-        .approach-card p {
-            color: var(--text-secondary);
-            line-height: 1.6;
-            font-size: 0.95rem;
-        }
-
-        /* ===== COMMUNITY ===== */
-        #community {
-            background: var(--bg-secondary);
-        }
-
-        .community-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-        }
-
-        .community-feature {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            display: flex;
-            gap: 1.2rem;
-            align-items: flex-start;
-            transition: all 0.3s;
-        }
-
-        .community-feature:hover {
-            border-color: var(--accent-glow);
-            background: var(--bg-card-hover);
-        }
-
-        .community-icon {
-            width: 44px;
-            height: 44px;
-            min-width: 44px;
-            border-radius: 10px;
-            background: var(--accent-dim);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.2rem;
-        }
-
-        .community-feature h3 {
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 0.4rem;
-        }
-
-        .community-feature p {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            line-height: 1.6;
-        }
-
-        /* ===== TESTIMONIALS ===== */
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1.5rem;
-        }
-
-        .testimonial-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 2rem;
-            position: relative;
-        }
-
-        .testimonial-card::before {
-            content: '"';
-            font-size: 4rem;
-            font-weight: 900;
-            color: var(--accent);
-            opacity: 0.2;
-            position: absolute;
-            top: 0.5rem;
-            left: 1.2rem;
-            line-height: 1;
-            font-family: Georgia, serif;
-        }
-
-        .testimonial-text {
-            color: var(--text-secondary);
-            line-height: 1.7;
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
-            position: relative;
-            z-index: 1;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-        }
-
-        .testimonial-avatar {
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            background: var(--gradient-1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 0.85rem;
-            color: var(--bg-primary);
-        }
-
-        .testimonial-name {
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .testimonial-role {
-            font-size: 0.8rem;
-            color: var(--text-muted);
-        }
-
-        .testimonials-coming {
-            text-align: center;
-            padding: 3rem;
-            color: var(--text-muted);
-            font-size: 1rem;
-            background: var(--bg-card);
-            border: 1px dashed var(--border);
-            border-radius: 12px;
-        }
-
-        /* ===== MENTORSHIP ===== */
-        #mentorship {
-            background: var(--bg-secondary);
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .pricing-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 16px;
-            padding: 2.5rem;
-            position: relative;
-            transition: all 0.3s;
-        }
-
-        .pricing-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--accent-glow);
-        }
-
-        .pricing-card.featured {
-            border-color: var(--accent);
-            box-shadow: 0 0 40px var(--accent-dim);
-        }
-
-        .pricing-card.featured::before {
-            content: 'MOST POPULAR';
-            position: absolute;
-            top: -12px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--gradient-1);
-            color: var(--bg-primary);
-            padding: 0.3rem 1.2rem;
-            border-radius: 100px;
-            font-size: 0.7rem;
-            font-weight: 800;
-            letter-spacing: 1px;
-        }
-
-        .pricing-card h3 {
-            font-size: 1.3rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .pricing-duration {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .pricing-amount {
-            display: flex;
-            align-items: baseline;
-            gap: 0.3rem;
-            margin-bottom: 0.3rem;
-        }
-
-        .pricing-dollar {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--text-secondary);
-        }
-
-        .pricing-value {
-            font-size: 3rem;
-            font-weight: 900;
-            letter-spacing: -2px;
-        }
-
-        .pricing-per {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-        }
-
-        .pricing-promo {
-            display: inline-block;
-            background: var(--gold-dim);
-            border: 1px solid rgba(240, 192, 64, 0.3);
-            color: var(--gold);
-            padding: 0.3rem 0.8rem;
-            border-radius: 6px;
-            font-size: 0.8rem;
-            font-weight: 600;
-            margin-bottom: 1.5rem;
-            font-family: var(--font-mono);
-        }
-
-        .pricing-features {
-            list-style: none;
-            margin-bottom: 2rem;
-        }
-
-        .pricing-features li {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            padding: 0.5rem 0;
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-        }
-
-        .pricing-features li .check {
-            color: var(--accent);
-            font-weight: 700;
-        }
-
-        .pricing-btn {
-            display: block;
-            width: 100%;
-            text-align: center;
-            padding: 0.9rem;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 0.95rem;
-            text-decoration: none;
-            transition: all 0.3s;
-            font-family: var(--font-display);
-            cursor: pointer;
-            border: none;
-        }
-
-        .pricing-btn.primary {
-            background: var(--gradient-1);
-            color: var(--bg-primary);
-        }
-
-        .pricing-btn.primary:hover {
-            box-shadow: 0 4px 20px var(--accent-glow);
-            transform: translateY(-1px);
-        }
-
-        .pricing-btn.secondary {
-            background: transparent;
-            color: var(--text-primary);
-            border: 1px solid var(--border);
-        }
-
-        .pricing-btn.secondary:hover {
-            border-color: var(--accent);
-        }
-
-        /* ===== FAQ ===== */
-        .faq-list {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            border-bottom: 1px solid var(--border);
-            padding: 1.5rem 0;
-        }
-
-        .faq-question {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            cursor: pointer;
-            font-size: 1.05rem;
-            font-weight: 600;
-            color: var(--text-primary);
-            transition: color 0.3s;
-        }
-
-        .faq-question:hover {
-            color: var(--accent);
-        }
-
-        .faq-toggle {
-            font-size: 1.5rem;
-            color: var(--text-muted);
-            transition: transform 0.3s;
-            line-height: 1;
-        }
-
-        .faq-item.active .faq-toggle {
-            transform: rotate(45deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.4s ease, padding 0.3s;
-            color: var(--text-secondary);
-            line-height: 1.7;
-            font-size: 0.95rem;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 300px;
-            padding-top: 1rem;
-        }
-
-        /* ===== BOOK CTA ===== */
-        #book {
-            background: var(--bg-secondary);
-            text-align: center;
-        }
-
-        .cta-box {
-            background: var(--bg-card);
-            border: 1px solid var(--border);
-            border-radius: 20px;
-            padding: 4rem 3rem;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-box::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(ellipse 60% 40% at 50% 0%, var(--accent-dim), transparent 70%);
-            pointer-events: none;
-        }
-
-        .cta-box h2 {
-            font-size: clamp(2rem, 4vw, 2.8rem);
-            font-weight: 800;
-            margin-bottom: 1rem;
-            letter-spacing: -1px;
-            position: relative;
-        }
-
-        .cta-box p {
-            color: var(--text-secondary);
-            font-size: 1.1rem;
-            max-width: 500px;
-            margin: 0 auto 2rem;
-            line-height: 1.7;
-            position: relative;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            position: relative;
-        }
-
-        /* ===== FOOTER ===== */
-        footer {
-            padding: 3rem 2rem;
-            text-align: center;
-            border-top: 1px solid var(--border);
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            text-decoration: none;
-            font-size: 0.85rem;
-            transition: color 0.3s;
-        }
-
-        .footer-links a:hover {
-            color: var(--text-primary);
-        }
-
-        .footer-copy {
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        /* ===== ANIMATIONS ===== */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        .reveal {
-            opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.7s ease, transform 0.7s ease;
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* ===== RESPONSIVE ===== */
+            --bg: #0a0a0c;
+            --bg-raised: #0f0f12;
+            --bg-subtle: #151518;
+            --accent: #e8873a;
+            --accent-soft: rgba(232, 135, 58, 0.08);
+            --accent-glow: rgba(232, 135, 58, 0.15);
+            --accent-bright: #f09a4a;
+            --text: #ede8e2;
+            --text-mid: #a09890;
+            --text-dim: #635c55;
+            --line: rgba(255,255,255,0.06);
+            --font: 'Sora', sans-serif;
+            --mono: 'JetBrains Mono', monospace;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: var(--accent) var(--bg); }
+        body { font-family: var(--font); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+        ::selection { background: var(--accent); color: var(--bg); }
+        a { color: inherit; text-decoration: none; }
+
+        /* NAV */
+        nav { position: fixed; top: 0; width: 100%; z-index: 100; padding: 1.2rem 0; backdrop-filter: blur(24px) saturate(1.2); background: rgba(10,10,12,0.75); border-bottom: 1px solid var(--line); transition: padding 0.3s; }
+        nav.scrolled { padding: 0.8rem 0; }
+        .nav-inner { max-width: 1060px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-family: var(--mono); font-weight: 500; font-size: 0.95rem; color: var(--accent); letter-spacing: -0.3px; }
+        .nav-right { display: flex; align-items: center; gap: 2.5rem; }
+        .nav-right a { font-size: 0.82rem; color: var(--text-dim); font-weight: 500; transition: color 0.25s; letter-spacing: 0.3px; }
+        .nav-right a:hover { color: var(--text); }
+        .nav-book { font-size: 0.82rem !important; color: var(--accent) !important; border: 1px solid rgba(232,135,58,0.3); padding: 0.45rem 1.1rem; border-radius: 6px; transition: all 0.25s !important; }
+        .nav-book:hover { background: var(--accent-soft); border-color: var(--accent); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; z-index: 101; }
+        .hamburger span { width: 22px; height: 1.5px; background: var(--text); transition: all 0.3s; }
+
+        /* HERO */
+        .hero { min-height: 100vh; display: flex; align-items: center; padding: 8rem 2rem 6rem; position: relative; }
+        .hero::after { content: ''; position: absolute; top: -5%; left: 50%; transform: translateX(-50%); width: 700px; height: 700px; background: radial-gradient(circle, rgba(232,135,58,0.07) 0%, transparent 65%); pointer-events: none; }
+        .hero-inner { max-width: 700px; margin: 0 auto; position: relative; z-index: 2; }
+        .hero-inner h1 { font-size: clamp(2.8rem, 6vw, 4.2rem); font-weight: 700; line-height: 1.1; letter-spacing: -2px; margin-bottom: 1.5rem; animation: fadeUp 0.7s ease both; }
+        .hero-inner h1 em { font-style: normal; color: var(--accent); }
+        .hero-intro { font-size: 1.1rem; color: var(--text-mid); line-height: 1.75; max-width: 540px; margin-bottom: 2.5rem; animation: fadeUp 0.7s ease 0.1s both; }
+        .hero-link { display: inline-flex; align-items: center; gap: 0.6rem; color: var(--accent); font-size: 0.95rem; font-weight: 500; transition: gap 0.3s; animation: fadeUp 0.7s ease 0.2s both; }
+        .hero-link:hover { gap: 1rem; }
+
+        /* COMMON */
+        .container { max-width: 1060px; margin: 0 auto; padding: 0 2rem; }
+        section { padding: 7rem 0; }
+        .label { font-family: var(--mono); font-size: 0.72rem; color: var(--text-dim); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 1.5rem; }
+        .sep { height: 1px; background: var(--line); max-width: 1060px; margin: 0 auto; }
+
+        /* ABOUT */
+        .about { background: var(--bg); }
+        .about-layout { display: grid; grid-template-columns: 300px 1fr; gap: 4rem; align-items: start; }
+        .about-photo { width: 100%; aspect-ratio: 3/4; border-radius: 10px; background: var(--bg-subtle); border: 1px solid var(--line); overflow: hidden; }
+        .about-photo-placeholder { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; color: var(--text-dim); font-size: 0.85rem; }
+        .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+        .about-text h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 1.5rem; line-height: 1.2; }
+        .about-text p { color: var(--text-mid); line-height: 1.8; margin-bottom: 1.2rem; font-size: 0.98rem; }
+        .about-markers { display: flex; gap: 2.5rem; margin-top: 2.5rem; padding-top: 2rem; border-top: 1px solid var(--line); }
+        .about-marker { display: flex; flex-direction: column; gap: 0.2rem; }
+        .about-marker .val { font-family: var(--mono); font-size: 1.1rem; font-weight: 500; color: var(--text); }
+        .about-marker .desc { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.5px; }
+
+        /* TOPICS */
+        .topics { background: var(--bg-raised); }
+        .topics h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
+        .topics-sub { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 500px; margin-bottom: 3rem; }
+        .topics-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
+        .topic-item { background: var(--bg-raised); padding: 2rem 2.2rem; transition: background 0.3s; }
+        .topic-item:hover { background: var(--bg-subtle); }
+        .topic-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
+        .topic-item p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
+
+        /* COMMUNITY */
+        .community { background: var(--bg); }
+        .community h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
+        .community-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 2.5rem; }
+        .community-perks { display: flex; flex-direction: column; gap: 1rem; }
+        .perk { display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem 1.5rem; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); transition: all 0.3s; }
+        .perk:hover { border-color: rgba(232,135,58,0.2); background: var(--accent-soft); }
+        .perk-icon { width: 36px; height: 36px; min-width: 36px; border-radius: 8px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--accent); font-family: var(--mono); font-weight: 500; }
+        .perk h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .perk p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; }
+        .community-cta { margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); font-size: 0.9rem; font-weight: 500; transition: gap 0.3s; }
+        .community-cta:hover { gap: 0.9rem; }
+
+        /* REVIEWS */
+        .reviews { background: var(--bg-raised); }
+        .reviews h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 2.5rem; }
+        .reviews-placeholder { padding: 3rem 2rem; border: 1px dashed rgba(255,255,255,0.08); border-radius: 10px; text-align: center; color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        .review-card { padding: 2rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
+        .review-text { color: var(--text-mid); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.2rem; font-style: italic; }
+        .review-who { font-size: 0.82rem; color: var(--text-dim); }
+        .review-who strong { color: var(--text); font-weight: 600; }
+
+        /* SESSIONS */
+        .sessions { background: var(--bg); }
+        .sessions h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
+        .sessions-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
+        .session-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 780px; }
+        .session-card { border: 1px solid var(--line); border-radius: 12px; padding: 2.5rem 2rem; background: var(--bg); transition: all 0.35s; }
+        .session-card:hover { border-color: rgba(232,135,58,0.2); background: var(--bg-raised); }
+        .session-card.highlight { border-color: rgba(232,135,58,0.3); background: var(--bg-raised); }
+        .session-type { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1rem; }
+        .session-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; letter-spacing: -0.5px; }
+        .session-card .price { font-family: var(--mono); font-size: 2rem; font-weight: 500; margin-bottom: 0.3rem; }
+        .session-card .duration { font-size: 0.82rem; color: var(--text-dim); margin-bottom: 1.5rem; }
+        .session-card .desc { color: var(--text-mid); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.8rem; }
+        .session-promo { display: inline-block; font-family: var(--mono); font-size: 0.75rem; color: var(--accent-bright); background: var(--accent-soft); border: 1px solid rgba(232,135,58,0.15); padding: 0.3rem 0.7rem; border-radius: 5px; margin-bottom: 1.5rem; }
+        .session-btn { display: block; width: 100%; text-align: center; padding: 0.8rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; font-family: var(--font); cursor: pointer; transition: all 0.25s; border: none; }
+        .session-btn.fill { background: var(--accent); color: var(--bg); }
+        .session-btn.fill:hover { box-shadow: 0 4px 24px var(--accent-glow); transform: translateY(-1px); }
+        .session-btn.outline { background: transparent; color: var(--text); border: 1px solid var(--line); }
+        .session-btn.outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* FAQ */
+        .faq { background: var(--bg-raised); }
+        .faq h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 2.5rem; }
+        .faq-list { max-width: 640px; }
+        .faq-item { border-bottom: 1px solid var(--line); }
+        .faq-q { padding: 1.3rem 0; display: flex; justify-content: space-between; align-items: center; cursor: pointer; font-size: 0.95rem; font-weight: 500; color: var(--text); transition: color 0.2s; gap: 2rem; }
+        .faq-q:hover { color: var(--accent); }
+        .faq-q .icon { font-size: 1.2rem; color: var(--text-dim); transition: transform 0.3s; flex-shrink: 0; }
+        .faq-item.open .faq-q .icon { transform: rotate(45deg); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding-bottom 0.3s; color: var(--text-mid); font-size: 0.9rem; line-height: 1.7; }
+        .faq-item.open .faq-a { max-height: 250px; padding-bottom: 1.3rem; }
+
+        /* BOTTOM CTA */
+        .bottom-cta { background: var(--bg); padding: 7rem 0; }
+        .bottom-cta-inner { max-width: 540px; }
+        .bottom-cta h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); font-weight: 700; letter-spacing: -1px; margin-bottom: 1rem; line-height: 1.15; }
+        .bottom-cta p { color: var(--text-mid); font-size: 1rem; line-height: 1.7; margin-bottom: 2rem; }
+        .bottom-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
+        .cta-main { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: var(--bg); padding: 0.85rem 1.8rem; border-radius: 8px; font-weight: 600; font-size: 0.9rem; transition: all 0.25s; }
+        .cta-main:hover { box-shadow: 0 4px 24px var(--accent-glow); transform: translateY(-1px); }
+        .cta-alt { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--text-mid); padding: 0.85rem 1.8rem; border-radius: 8px; font-weight: 500; font-size: 0.9rem; border: 1px solid var(--line); transition: all 0.25s; }
+        .cta-alt:hover { border-color: var(--text-dim); color: var(--text); }
+
+        /* FOOTER */
+        footer { padding: 2.5rem 0; border-top: 1px solid var(--line); }
+        .footer-inner { max-width: 1060px; margin: 0 auto; padding: 0 2rem; display: flex; justify-content: space-between; align-items: center; }
+        .footer-copy { font-size: 0.78rem; color: var(--text-dim); }
+        .footer-links { display: flex; gap: 1.5rem; }
+        .footer-links a { font-size: 0.78rem; color: var(--text-dim); transition: color 0.2s; }
+        .footer-links a:hover { color: var(--text); }
+
+        /* ANIMATIONS */
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+        .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.6s ease, transform 0.6s ease; }
+        .reveal.vis { opacity: 1; transform: translateY(0); }
+
+        /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background: var(--bg-secondary);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2rem;
-                transition: right 0.4s ease;
-                border-left: 1px solid var(--border);
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .mobile-toggle {
-                display: flex;
-            }
-
-            .about-grid {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about-image {
-                aspect-ratio: 16/9;
-                max-height: 300px;
-            }
-
-            .approach-cards {
-                grid-template-columns: 1fr;
-            }
-
-            .community-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .testimonials-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .pricing-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-stats {
-                gap: 1.5rem;
-            }
-
-            .hero-stat .number {
-                font-size: 1.4rem;
-            }
-
-            .cta-box {
-                padding: 3rem 1.5rem;
-            }
+            .nav-right { position: fixed; top: 0; right: -100%; width: 75%; height: 100vh; background: var(--bg-raised); flex-direction: column; justify-content: center; gap: 2rem; transition: right 0.35s ease; border-left: 1px solid var(--line); }
+            .nav-right.open { right: 0; }
+            .hamburger { display: flex; }
+            .about-layout { grid-template-columns: 1fr; gap: 2rem; }
+            .about-photo { max-width: 260px; aspect-ratio: 3/4; }
+            .about-markers { gap: 1.5rem; flex-wrap: wrap; }
+            .topics-list { grid-template-columns: 1fr; }
+            .session-options { grid-template-columns: 1fr; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
         }
     </style>
 </head>
 <body>
-
-    <!-- NAVBAR -->
-    <nav class="navbar">
-        <a href="#" class="nav-logo">GM<span>TRADING</span></a>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#approach">Approach</a></li>
-            <li><a href="#community">Community</a></li>
-            <li><a href="#testimonials">Results</a></li>
-            <li><a href="#mentorship">Mentorship</a></li>
-            <li><a href="#book" class="nav-cta">Book a Session</a></li>
-        </ul>
-        <div class="mobile-toggle" onclick="toggleMenu()">
-            <span></span>
-            <span></span>
-            <span></span>
+    <nav>
+        <div class="nav-inner">
+            <a href="#" class="logo">gmtrading</a>
+            <div class="nav-right">
+                <a href="#about">About</a>
+                <a href="#topics">What I Teach</a>
+                <a href="#community">Community</a>
+                <a href="#sessions">Sessions</a>
+                <a href="#sessions" class="nav-book">Book a session</a>
+            </div>
+            <div class="hamburger" onclick="document.querySelector('.nav-right').classList.toggle('open')">
+                <span></span><span></span><span></span>
+            </div>
         </div>
     </nav>
 
-    <!-- HERO -->
     <section class="hero">
-        <div class="hero-bg"></div>
-        <div class="hero-grid"></div>
-        <div class="hero-content">
-            <div class="hero-badge">
-                <span class="dot"></span>
-                Currently accepting new mentees
-            </div>
-            <h1>Trade Smarter.<br><span class="highlight">Get Mentored.</span></h1>
-            <p class="hero-sub">Private 1-on-1 trading sessions with MattyG. Futures, crypto, price action — learn the strategies behind consistent profitability.</p>
-            <div class="hero-buttons">
-                <a href="#mentorship" class="btn-primary">View Sessions &darr;</a>
-                <a href="#about" class="btn-secondary">Learn More</a>
-            </div>
-            <div class="hero-stats">
-                <div class="hero-stat">
-                    <div class="number">10+</div>
-                    <div class="label">Years Trading</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="number">Funded</div>
-                    <div class="label">Multiple Accounts</div>
-                </div>
-                <div class="hero-stat">
-                    <div class="number">500+</div>
-                    <div class="label">Community Members</div>
-                </div>
-            </div>
+        <div class="hero-inner">
+            <h1>I trade for a living.<br><em>I can teach you how.</em></h1>
+            <p class="hero-intro">I'm MattyG — a funded futures and crypto trader who's been in the markets for over a decade. I offer private 1-on-1 sessions for traders at any level. No courses, no fluff, just real time with me going over what actually works.</p>
+            <a href="#sessions" class="hero-link">See session options <span class="arrow">&darr;</span></a>
         </div>
     </section>
 
-    <!-- ABOUT -->
-    <section id="about">
-        <div class="section-container">
-            <div class="about-grid reveal">
-                <div class="about-image">
-                    <div class="about-image-placeholder">
-                        <!-- Replace with your photo -->
-                        Your Photo Here
-                    </div>
+    <div class="sep"></div>
+
+    <section class="about" id="about">
+        <div class="container">
+            <div class="about-layout reveal">
+                <div class="about-photo">
+                    <div class="about-photo-placeholder">Your photo</div>
                 </div>
                 <div class="about-text">
-                    <span class="section-label">About Me</span>
-                    <h2>I'm MattyG.<br>I trade for a <span class="highlight">living.</span></h2>
-                    <p>I've been in the markets for over a decade — futures, crypto, you name it. I trade a patient, disciplined style focused on 1-2 high-quality setups per day. No overtrading, no gambling, just clean execution based on objective market structure.</p>
-                    <p>I hold multiple funded trading accounts and built my approach around liquidity, order flow, and price action. I'm not here to sell you a dream — I'm here to show you what actually works and help you become consistently profitable.</p>
-                    <p>I also study Software Engineering at Florida Tech, so I bring a technical, data-driven mindset to everything I do — from building trading tools to analyzing the markets.</p>
-                    <div class="about-tags">
-                        <span class="about-tag">Futures</span>
-                        <span class="about-tag">Cryptocurrency</span>
-                        <span class="about-tag">Price Action</span>
-                        <span class="about-tag">Funded Trader</span>
-                        <span class="about-tag">Risk Management</span>
-                        <span class="about-tag">Mindset</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- APPROACH -->
-    <section id="approach">
-        <div class="section-container">
-            <div class="reveal">
-                <span class="section-label">My Approach</span>
-                <h2 class="section-title">How I Trade &<br>What I'll Teach You</h2>
-                <p class="section-desc">No fluff, no indicators from YouTube. Real market mechanics that institutional traders use.</p>
-            </div>
-            <div class="approach-cards reveal">
-                <div class="approach-card">
-                    <div class="approach-icon">&#9678;</div>
-                    <h3>Liquidity & Order Flow</h3>
-                    <p>Understanding where the money is, where stops are sitting, and how to position yourself on the right side of the move.</p>
-                </div>
-                <div class="approach-card">
-                    <div class="approach-icon">&#9881;</div>
-                    <h3>Market Structure</h3>
-                    <p>Break of structure, fair value gaps, imbalances — reading the market like a map instead of guessing where it's going.</p>
-                </div>
-                <div class="approach-card">
-                    <div class="approach-icon">&#9733;</div>
-                    <h3>Risk Management</h3>
-                    <p>The #1 reason traders fail. I'll teach you how to size positions, manage drawdowns, and protect your capital like a professional.</p>
-                </div>
-                <div class="approach-card">
-                    <div class="approach-icon">&#9889;</div>
-                    <h3>Execution & Patience</h3>
-                    <p>1-2 trades a day. That's it. I'll show you how to wait for A+ setups and execute with precision instead of forcing trades.</p>
-                </div>
-                <div class="approach-card">
-                    <div class="approach-icon">&#9775;</div>
-                    <h3>Mindset & Psychology</h3>
-                    <p>Your biggest enemy is between your ears. We'll get your head right so you can trade with discipline and confidence.</p>
-                </div>
-                <div class="approach-card">
-                    <div class="approach-icon">&#9879;</div>
-                    <h3>Getting Funded</h3>
-                    <p>I've passed multiple funded account challenges. I'll walk you through the process, the rules, and the strategies to get there.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- COMMUNITY -->
-    <section id="community">
-        <div class="section-container">
-            <div class="reveal">
-                <span class="section-label">Community</span>
-                <h2 class="section-title">Join the Trading Community</h2>
-                <p class="section-desc">MattyG HQ isn't just a Discord server — it's where serious traders connect, share ideas, and grow together.</p>
-            </div>
-            <div class="community-grid reveal">
-                <div class="community-feature">
-                    <div class="community-icon">&#128172;</div>
-                    <div>
-                        <h3>Live Trade Discussion</h3>
-                        <p>Real-time market talk during sessions. Share setups, get feedback, and trade alongside other motivated traders.</p>
-                    </div>
-                </div>
-                <div class="community-feature">
-                    <div class="community-icon">&#128200;</div>
-                    <div>
-                        <h3>Daily Market Analysis</h3>
-                        <p>Wake up to key levels, bias direction, and potential setups before the market even opens.</p>
-                    </div>
-                </div>
-                <div class="community-feature">
-                    <div class="community-icon">&#127891;</div>
-                    <div>
-                        <h3>Educational Resources</h3>
-                        <p>Guides, video breakdowns, and strategy walkthroughs to build your knowledge from the ground up.</p>
-                    </div>
-                </div>
-                <div class="community-feature">
-                    <div class="community-icon">&#128640;</div>
-                    <div>
-                        <h3>Accountability & Growth</h3>
-                        <p>Surround yourself with traders who take it seriously. Share your journal, track progress, and stay disciplined.</p>
-                    </div>
-                </div>
-            </div>
-            <div style="text-align: center; margin-top: 2.5rem;" class="reveal">
-                <a href="#" class="btn-secondary" target="_blank">Join the Discord &rarr;</a>
-            </div>
-        </div>
-    </section>
-
-    <div class="divider"></div>
-
-    <!-- TESTIMONIALS -->
-    <section id="testimonials">
-        <div class="section-container">
-            <div class="reveal">
-                <span class="section-label">Results</span>
-                <h2 class="section-title">What Traders Are Saying</h2>
-                <p class="section-desc">Real feedback from real people who've worked with me.</p>
-            </div>
-            <div class="reveal">
-                <div class="testimonials-coming">
-                    Testimonials coming soon — be one of the first to book a session and share your experience.
-                </div>
-                <!--
-                UNCOMMENT AND USE THIS GRID WHEN YOU HAVE TESTIMONIALS:
-                <div class="testimonials-grid">
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">Quote from student here about their experience.</p>
-                        <div class="testimonial-author">
-                            <div class="testimonial-avatar">JD</div>
-                            <div>
-                                <div class="testimonial-name">John Doe</div>
-                                <div class="testimonial-role">Futures Trader</div>
-                            </div>
+                    <div class="label">About</div>
+                    <h2>A little about me</h2>
+                    <p>I've been trading for over 10 years — started young, lost money like everyone does, and slowly figured out what actually matters. These days I trade a very patient, disciplined style. Usually 1-2 trades a day, focused entirely on price action, liquidity, and market structure.</p>
+                    <p>I hold multiple funded accounts and I've been through every phase of this game — the blowups, the breakthroughs, the mental battles. That experience is what I bring to every session. I'm not here to sell you signals or a magic system. I'm here to sit with you and help you get better.</p>
+                    <p>Outside of trading, I'm finishing my degree in Software Engineering at Florida Tech and I run a trading community where we all push each other to improve every day.</p>
+                    <div class="about-markers">
+                        <div class="about-marker">
+                            <span class="val">10+ years</span>
+                            <span class="desc">in the markets</span>
+                        </div>
+                        <div class="about-marker">
+                            <span class="val">Funded</span>
+                            <span class="desc">multiple accounts</span>
+                        </div>
+                        <div class="about-marker">
+                            <span class="val">Futures & Crypto</span>
+                            <span class="desc">primary markets</span>
                         </div>
                     </div>
                 </div>
-                -->
             </div>
         </div>
     </section>
 
-    <!-- MENTORSHIP -->
-    <section id="mentorship">
-        <div class="section-container">
-            <div class="reveal" style="text-align: center;">
-                <span class="section-label">Mentorship</span>
-                <h2 class="section-title">Pick Your Session</h2>
-                <p class="section-desc" style="margin-left: auto; margin-right: auto;">Whether you need a quick answer or a full deep dive, I've got you covered.</p>
+    <div class="sep"></div>
+
+    <section class="topics" id="topics">
+        <div class="container">
+            <div class="reveal">
+                <div class="label">What I teach</div>
+                <h2>What we can work on together</h2>
+                <p class="topics-sub">Every session is tailored to you. But here are the areas I tend to cover most.</p>
             </div>
-            <div class="pricing-grid reveal">
-                <!-- QUICK CALL -->
-                <div class="pricing-card">
-                    <h3>Quick Call</h3>
-                    <div class="pricing-duration">30 minutes</div>
-                    <div class="pricing-amount">
-                        <span class="pricing-dollar">$</span>
-                        <span class="pricing-value">150</span>
-                    </div>
-                    <div class="pricing-per">per session</div>
-                    <ul class="pricing-features">
-                        <li><span class="check">&#10003;</span> Chart review & setup critique</li>
-                        <li><span class="check">&#10003;</span> Strategy Q&A</li>
-                        <li><span class="check">&#10003;</span> Quick mindset check-in</li>
-                        <li><span class="check">&#10003;</span> Actionable takeaway</li>
-                        <li><span class="check">&#10003;</span> Google Meet or Discord</li>
-                    </ul>
-                    <a href="https://calendly.com/mattygtrading/mentoring-call" target="_blank" class="pricing-btn secondary">Book Quick Call</a>
+            <div class="topics-list reveal">
+                <div class="topic-item">
+                    <h3>Liquidity & Order Flow</h3>
+                    <p>Where the money is, where stops are sitting, and how to position yourself correctly.</p>
                 </div>
-                <!-- 1-ON-1 SESSION -->
-                <div class="pricing-card featured">
-                    <h3>1-on-1 Session</h3>
-                    <div class="pricing-duration">1 hour</div>
-                    <div class="pricing-amount">
-                        <span class="pricing-dollar">$</span>
-                        <span class="pricing-value">250</span>
-                    </div>
-                    <div class="pricing-per">per session</div>
-                    <div class="pricing-promo">FIRST1 — $150 off first session</div>
-                    <ul class="pricing-features">
-                        <li><span class="check">&#10003;</span> Full strategy deep dive</li>
-                        <li><span class="check">&#10003;</span> Personalized game plan</li>
-                        <li><span class="check">&#10003;</span> Risk management review</li>
-                        <li><span class="check">&#10003;</span> Mindset & psychology work</li>
-                        <li><span class="check">&#10003;</span> Beginner-friendly curriculum</li>
-                        <li><span class="check">&#10003;</span> Google Meet or Discord</li>
-                    </ul>
-                    <a href="https://calendly.com/mattygtrading/1on1" target="_blank" class="pricing-btn primary">Book 1-on-1 Session</a>
+                <div class="topic-item">
+                    <h3>Market Structure</h3>
+                    <p>BOS, fair value gaps, imbalances — reading the chart like a map instead of guessing.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Risk Management</h3>
+                    <p>Position sizing, drawdown control, and protecting your capital like a professional.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Execution & Patience</h3>
+                    <p>Waiting for A+ setups and taking only the best trades. Quality over quantity, always.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Mindset & Psychology</h3>
+                    <p>The mental game is where most traders lose. We'll work on discipline, confidence, and emotional control.</p>
+                </div>
+                <div class="topic-item">
+                    <h3>Getting Funded</h3>
+                    <p>I've passed multiple challenges. I'll walk you through the process and what it takes to stay funded.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="divider"></div>
+    <div class="sep"></div>
 
-    <!-- FAQ -->
-    <section id="faq">
-        <div class="section-container">
-            <div class="reveal" style="text-align: center;">
-                <span class="section-label">FAQ</span>
-                <h2 class="section-title">Common Questions</h2>
+    <section class="community" id="community">
+        <div class="container">
+            <div class="reveal">
+                <div class="label">Community</div>
+                <h2>You don't have to trade alone</h2>
+                <p class="community-desc">I run a private trading community on Discord where serious traders connect, share ideas, and hold each other accountable. It's not a signals group — it's a room full of people trying to get better every day.</p>
+            </div>
+            <div class="community-perks reveal">
+                <div class="perk">
+                    <div class="perk-icon">01</div>
+                    <div>
+                        <h3>Live market discussion</h3>
+                        <p>Real-time talk during sessions. Share setups, get feedback, learn together.</p>
+                    </div>
+                </div>
+                <div class="perk">
+                    <div class="perk-icon">02</div>
+                    <div>
+                        <h3>Daily analysis & levels</h3>
+                        <p>Key levels and bias direction posted before the market opens.</p>
+                    </div>
+                </div>
+                <div class="perk">
+                    <div class="perk-icon">03</div>
+                    <div>
+                        <h3>Accountability</h3>
+                        <p>Share your journal, track progress, and stay disciplined with people who care.</p>
+                    </div>
+                </div>
+            </div>
+            <a href="#" class="community-cta reveal" target="_blank">Join the Discord <span class="arrow">&rarr;</span></a>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <section class="reviews" id="testimonials">
+        <div class="container">
+            <div class="reveal">
+                <div class="label">What people say</div>
+                <h2>From traders I've worked with</h2>
+            </div>
+            <div class="reveal">
+                <div class="reviews-placeholder">
+                    Testimonials coming soon. Book a session and you might be the first one here.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <section class="sessions" id="sessions">
+        <div class="container">
+            <div class="reveal">
+                <div class="label">Mentorship</div>
+                <h2>Work with me</h2>
+                <p class="sessions-desc">Two options depending on what you need. Every session is private, 1-on-1, and tailored to where you're at.</p>
+            </div>
+            <div class="session-options reveal">
+                <div class="session-card">
+                    <div class="session-type">Quick call</div>
+                    <h3>30-Minute Session</h3>
+                    <div class="price">$150</div>
+                    <div class="duration">30 minutes · Google Meet or Discord</div>
+                    <p class="desc">Got a specific question, want a chart reviewed, or need a second opinion on something? This is a focused session where we dive right into whatever you bring. You'll leave with something actionable.</p>
+                    <a href="https://calendly.com/mattygtrading/mentoring-call" target="_blank" class="session-btn outline">Book a quick call</a>
+                </div>
+                <div class="session-card highlight">
+                    <div class="session-type">Deep dive</div>
+                    <h3>1-Hour Session</h3>
+                    <div class="price">$250</div>
+                    <div class="duration">60 minutes · Google Meet or Discord</div>
+                    <div class="session-promo">Use code FIRST1 for $150 off your first session</div>
+                    <p class="desc">The full experience. If you're experienced, bring your setups and questions — we'll sharpen your edge. If you're just starting, I've already got a game plan ready for you. Either way, you're leaving this call better than you came in.</p>
+                    <a href="https://calendly.com/mattygtrading/1on1" target="_blank" class="session-btn fill">Book a 1-on-1</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <section class="faq" id="faq">
+        <div class="container">
+            <div class="reveal">
+                <div class="label">FAQ</div>
+                <h2>Questions</h2>
             </div>
             <div class="faq-list reveal">
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        Do I need experience to book a session?
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        Not at all. Whether you've never placed a trade or you're already funded, I tailor every session to where you're at. Beginners get a full game plan from scratch — experienced traders get targeted strategy refinement.
-                    </div>
+                    <div class="faq-q" onclick="toggleFaq(this)">Do I need trading experience?<span class="icon">+</span></div>
+                    <div class="faq-a">Nope. I work with everyone from complete beginners to funded traders. If you're new, I have a full plan to get you started the right way. If you're experienced, we'll focus on whatever you need to work on.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        What do I need to prepare?
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        Bring your charts, your questions, or specific setups you want to review. If you're a beginner, just show up with an open mind — I'll handle the rest. Having TradingView open is helpful but not required.
-                    </div>
+                    <div class="faq-q" onclick="toggleFaq(this)">What should I prepare?<span class="icon">+</span></div>
+                    <div class="faq-a">Bring your charts, your journal, your questions — whatever you've got. If you're a beginner, just show up with an open mind and I'll take it from there. TradingView open is helpful but not required.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        How does the FIRST1 promo code work?
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        Use code FIRST1 when booking your first 1-hour session to get $150 off (pay $100 instead of $250). It's only available for first-time bookings on the 1-hour session.
-                    </div>
+                    <div class="faq-q" onclick="toggleFaq(this)">How does the FIRST1 code work?<span class="icon">+</span></div>
+                    <div class="faq-a">Enter FIRST1 when booking your first 1-hour session and you'll pay $100 instead of $250. It's only valid on the 1-hour session and only for first-time bookings.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        What's the refund policy?
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        Refunds are available up to 24 hours before the session. No refunds within 24 hours of the scheduled time. Rescheduling is allowed up to 24 hours before the session. No-shows will not be refunded.
-                    </div>
+                    <div class="faq-q" onclick="toggleFaq(this)">What's the refund policy?<span class="icon">+</span></div>
+                    <div class="faq-a">Refunds are available up to 24 hours before the session. No refunds within 24 hours. Rescheduling is allowed up to 24 hours in advance. No-shows will not be refunded.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        What markets do you cover?
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        Primarily futures (ES, NQ, etc.) and cryptocurrency. The strategies and concepts I teach — liquidity, market structure, risk management — apply across all markets though.
-                    </div>
+                    <div class="faq-q" onclick="toggleFaq(this)">What markets do you trade?<span class="icon">+</span></div>
+                    <div class="faq-a">Primarily futures and crypto. But the principles I teach — liquidity, structure, risk management — work across all markets.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-question" onclick="toggleFaq(this)">
-                        Can I book multiple sessions?
-                        <span class="faq-toggle">+</span>
-                    </div>
-                    <div class="faq-answer">
-                        Absolutely. Many traders book recurring sessions to build on what we cover. You can book as many as you want through the Calendly page.
-                    </div>
+                    <div class="faq-q" onclick="toggleFaq(this)">Can I book more than one session?<span class="icon">+</span></div>
+                    <div class="faq-a">Absolutely. A lot of people do. You can book as many sessions as you want through the scheduling page.</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- BOOK CTA -->
-    <section id="book">
-        <div class="section-container">
-            <div class="cta-box reveal">
-                <h2>Ready to Level Up<br>Your Trading?</h2>
-                <p>Stop guessing, start executing. Book a session and let's build your edge together.</p>
-                <div class="cta-buttons">
-                    <a href="https://calendly.com/mattygtrading/mentoring-call" target="_blank" class="btn-primary">Book Quick Call — $150</a>
-                    <a href="https://calendly.com/mattygtrading/1on1" target="_blank" class="btn-primary">Book 1-on-1 — $250</a>
+    <section class="bottom-cta">
+        <div class="container">
+            <div class="bottom-cta-inner reveal">
+                <h2>Ready when you are.</h2>
+                <p>If you're serious about getting better at this, let's talk. Pick a time that works and I'll see you on the call.</p>
+                <div class="bottom-buttons">
+                    <a href="https://calendly.com/mattygtrading/1on1" target="_blank" class="cta-main">Book a session &rarr;</a>
+                    <a href="#about" class="cta-alt">Learn more about me</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer>
-        <div class="footer-links">
-            <a href="https://mattyg.com" target="_blank">mattyg.com</a>
-            <a href="https://instagram.com/mattyg" target="_blank">Instagram</a>
-            <a href="#" target="_blank">Discord</a>
-            <a href="#" target="_blank">Telegram</a>
-            <a href="https://calendly.com/mattygtrading" target="_blank">Book a Session</a>
+        <div class="footer-inner">
+            <span class="footer-copy">&copy; 2026 GM Trading</span>
+            <div class="footer-links">
+                <a href="https://mattyg.com" target="_blank">mattyg.com</a>
+                <a href="https://instagram.com/mattygtrades" target="_blank">Instagram</a>
+                <a href="#" target="_blank">Discord</a>
+                <a href="#" target="_blank">Telegram</a>
+            </div>
         </div>
-        <p class="footer-copy">&copy; 2026 GM Trading. All rights reserved.</p>
     </footer>
 
     <script>
-        // Navbar scroll effect
-        window.addEventListener('scroll', () => {
-            const nav = document.querySelector('.navbar');
-            nav.classList.toggle('scrolled', window.scrollY > 50);
-        });
-
-        // Mobile menu toggle
-        function toggleMenu() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        }
-
-        // Close mobile menu on link click
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', () => {
-                document.querySelector('.nav-links').classList.remove('active');
-            });
-        });
-
-        // FAQ toggle
-        function toggleFaq(el) {
-            const item = el.parentElement;
-            const wasActive = item.classList.contains('active');
-            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('active'));
-            if (!wasActive) item.classList.add('active');
-        }
-
-        // Scroll reveal
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        window.addEventListener('scroll', () => { document.querySelector('nav').classList.toggle('scrolled', scrollY > 60); });
+        document.querySelectorAll('.nav-right a').forEach(a => { a.addEventListener('click', () => document.querySelector('.nav-right').classList.remove('open')); });
+        function toggleFaq(el) { const item = el.parentElement; const open = item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); if (!open) item.classList.add('open'); }
+        const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }); }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 </body>
 </html>
