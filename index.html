@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>GM Trading | MattyG</title>
+    <link rel="icon" type="image/png" href="public/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -71,47 +72,57 @@
         .about-marker .val { font-family: var(--mono); font-size: 1.1rem; font-weight: 500; color: var(--text); }
         .about-marker .desc { font-size: 0.75rem; color: var(--text-dim); letter-spacing: 0.5px; }
 
-        /* TOPICS */
-        .topics { background: var(--bg-raised); }
-        .topics h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
-        .topics-sub { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 500px; margin-bottom: 3rem; }
-        .topics-list { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: 12px; overflow: hidden; }
-        .topic-item { background: var(--bg-raised); padding: 2rem 2.2rem; transition: background 0.3s; }
-        .topic-item:hover { background: var(--bg-subtle); }
-        .topic-item h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.5rem; }
-        .topic-item p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
-
-        /* COMMUNITY */
-        .community { background: var(--bg); }
-        .community h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
-        .community-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 2.5rem; }
-        .community-perks { display: flex; flex-direction: column; gap: 1rem; }
-        .perk { display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem 1.5rem; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); transition: all 0.3s; }
-        .perk:hover { border-color: rgba(232,135,58,0.2); background: var(--accent-soft); }
-        .perk-icon { width: 36px; height: 36px; min-width: 36px; border-radius: 8px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--accent); font-family: var(--mono); font-weight: 500; }
-        .perk h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
-        .perk p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; }
-        .community-cta { margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); font-size: 0.9rem; font-weight: 500; transition: gap 0.3s; }
-        .community-cta:hover { gap: 0.9rem; }
-
         /* REVIEWS */
         .reviews { background: var(--bg-raised); }
         .reviews h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 2.5rem; }
-        .reviews-placeholder { padding: 3rem 2rem; border: 1px dashed rgba(255,255,255,0.08); border-radius: 10px; text-align: center; color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; }
-        .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
-        .review-card { padding: 2rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); }
-        .review-text { color: var(--text-mid); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1.2rem; font-style: italic; }
-        .review-who { font-size: 0.82rem; color: var(--text-dim); }
-        .review-who strong { color: var(--text); font-weight: 600; }
+        .reviews-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; align-items: start; }
+        .review-card { padding: 2rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); transition: border-color 0.3s; }
+        .review-card:hover { border-color: rgba(232,135,58,0.15); }
+        .review-text { color: var(--text-mid); font-size: 0.92rem; line-height: 1.7; margin-bottom: 1rem; font-style: italic; }
+        .review-text .full { display: none; }
+        .review-card.expanded .review-text .preview { display: none; }
+        .review-card.expanded .review-text .full { display: inline; }
+        .review-toggle { background: none; border: none; color: var(--accent); font-family: var(--font); font-size: 0.85rem; font-weight: 500; cursor: pointer; padding: 0; margin-bottom: 1.2rem; transition: opacity 0.2s; }
+        .review-toggle:hover { opacity: 0.75; }
+        .review-who { font-size: 0.82rem; color: var(--text-dim); padding-top: 0.8rem; border-top: 1px solid var(--line); }
+        .review-who strong { color: var(--text); font-weight: 600; display: block; margin-bottom: 0.15rem; font-size: 0.88rem; }
+
+        /* MENTORSHIP INTRO */
+        .mentorship-intro { background: var(--bg); }
+        .mentorship-intro h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 1.2rem; line-height: 1.2; max-width: 640px; }
+        .mentorship-intro-body { max-width: 640px; }
+        .mentorship-intro-body p { color: var(--text-mid); line-height: 1.8; margin-bottom: 1.2rem; font-size: 1rem; }
+
+        /* BENEFITS */
+        .benefits { background: var(--bg-raised); }
+        .benefits h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
+        .benefits-sub { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
+        .benefits-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+        .benefit-card { padding: 1.8rem 2rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg); transition: all 0.3s; display: flex; gap: 1.2rem; align-items: flex-start; }
+        .benefit-card:hover { border-color: rgba(232,135,58,0.2); background: var(--accent-soft); }
+        .benefit-num { font-family: var(--mono); font-size: 0.75rem; color: var(--accent); padding-top: 0.15rem; min-width: 24px; }
+        .benefit-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .benefit-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
+
+        /* WHAT TO EXPECT */
+        .expect { background: var(--bg); }
+        .expect h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
+        .expect-sub { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
+        .expect-list { max-width: 720px; display: flex; flex-direction: column; gap: 1.5rem; }
+        .expect-item { display: flex; gap: 1.5rem; align-items: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+        .expect-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .expect-num { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); min-width: 28px; padding-top: 0.25rem; }
+        .expect-content h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .expect-content p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.7; }
 
         /* SESSIONS */
-        .sessions { background: var(--bg); }
+        .sessions { background: var(--bg-raised); }
         .sessions h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
         .sessions-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
         .session-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 780px; }
         .session-card { border: 1px solid var(--line); border-radius: 12px; padding: 2.5rem 2rem; background: var(--bg); transition: all 0.35s; }
-        .session-card:hover { border-color: rgba(232,135,58,0.2); background: var(--bg-raised); }
-        .session-card.highlight { border-color: rgba(232,135,58,0.3); background: var(--bg-raised); }
+        .session-card:hover { border-color: rgba(232,135,58,0.2); background: var(--bg-subtle); }
+        .session-card.highlight { border-color: rgba(232,135,58,0.3); background: var(--bg-subtle); }
         .session-type { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1rem; }
         .session-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; letter-spacing: -0.5px; }
         .session-card .price { font-family: var(--mono); font-size: 2rem; font-weight: 500; margin-bottom: 0.3rem; }
@@ -123,6 +134,19 @@
         .session-btn.fill:hover { box-shadow: 0 4px 24px var(--accent-glow); transform: translateY(-1px); }
         .session-btn.outline { background: transparent; color: var(--text); border: 1px solid var(--line); }
         .session-btn.outline:hover { border-color: var(--accent); color: var(--accent); }
+
+        /* COMMUNITY */
+        .community { background: var(--bg); }
+        .community h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
+        .community-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 2.5rem; }
+        .community-perks { display: flex; flex-direction: column; gap: 1rem; }
+        .perk { display: flex; align-items: flex-start; gap: 1rem; padding: 1.2rem 1.5rem; border-radius: 10px; border: 1px solid var(--line); background: var(--bg); transition: all 0.3s; }
+        .perk:hover { border-color: rgba(232,135,58,0.2); background: var(--accent-soft); }
+        .perk-icon { width: 36px; height: 36px; min-width: 36px; border-radius: 8px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; font-size: 0.85rem; color: var(--accent); font-family: var(--mono); font-weight: 500; }
+        .perk h3 { font-size: 0.95rem; font-weight: 600; margin-bottom: 0.2rem; }
+        .perk p { font-size: 0.85rem; color: var(--text-dim); line-height: 1.5; }
+        .community-cta { margin-top: 2rem; display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent); font-size: 0.9rem; font-weight: 500; transition: gap 0.3s; margin-right: 1.5rem; }
+        .community-cta:hover { gap: 0.9rem; }
 
         /* FAQ */
         .faq { background: var(--bg-raised); }
@@ -168,9 +192,9 @@
             .about-layout { grid-template-columns: 1fr; gap: 2rem; }
             .about-photo { max-width: 260px; aspect-ratio: 3/4; }
             .about-markers { gap: 1.5rem; flex-wrap: wrap; }
-            .topics-list { grid-template-columns: 1fr; }
-            .session-options { grid-template-columns: 1fr; }
             .reviews-grid { grid-template-columns: 1fr; }
+            .benefits-grid { grid-template-columns: 1fr; }
+            .session-options { grid-template-columns: 1fr; }
             .footer-inner { flex-direction: column; gap: 1rem; text-align: center; }
         }
     </style>
@@ -181,9 +205,9 @@
             <a href="#" class="logo">GM Trading</a>
             <div class="nav-right">
                 <a href="#about">About</a>
-                <a href="#topics">What I Teach</a>
-                <a href="#community">Community</a>
+                <a href="#mentorship">Mentorship</a>
                 <a href="#sessions">Sessions</a>
+                <a href="#community">Community</a>
                 <a href="#sessions" class="nav-book">Book a session</a>
             </div>
             <div class="hamburger" onclick="document.querySelector('.nav-right').classList.toggle('open')">
@@ -237,37 +261,208 @@
 
     <div class="sep"></div>
 
-    <section class="topics" id="topics">
+    <section class="reviews" id="testimonials">
         <div class="container">
             <div class="reveal">
-                <div class="label">What I teach</div>
-                <h2>What we can work on together</h2>
-                <p class="topics-sub">Every session is tailored to you. But here are the areas I tend to cover most.</p>
+                <div class="label">What people say</div>
+                <h2>From traders I've worked with</h2>
             </div>
-            <div class="topics-list reveal">
-                <div class="topic-item">
-                    <h3>Mindset & Psychology</h3>
-                    <p>The mental game is where 99% of traders overlook, and why most traders lose.</p>
+            <div class="reviews-grid reveal">
+                <div class="review-card">
+                    <div class="review-text">
+                        <span class="preview">"After knowing nothing about trading, Matthew took us under his wing completely and has taught me and my family the real basics of trading and how to manage trading. Matthew is an incredible guy with a ton of knowledge and has been 100% honest about everything in the trading world..."</span>
+                        <span class="full">"After knowing nothing about trading, Matthew took us under his wing completely and has taught me and my family the real basics of trading and how to manage trading. Matthew is an incredible guy with a ton of knowledge and has been 100% honest about everything in the trading world. He has shown us how to keep a good mental and to learn to trade and not to gamble. Matthew also on our first week went 6/6 on trades hitting one trade every day and 2 on the last day which was Friday, he killed it and nailed every trade perfect. Matt also showed us how to not be greedy and to take the wins we have made and be done for the day and to not chase the money and to be satisfied with our wins small or big. GM trading has been amazing and Matthew is an awesome coach. This discord is 100% worth the $50 a month and I always look forward to the next day of trading. This has done my family great financially and I can't thank him enough."</span>
+                    </div>
+                    <button class="review-toggle" onclick="toggleReview(this)">Read full testimonial &rarr;</button>
+                    <div class="review-who">
+                        <strong>Name Placeholder</strong>
+                        GM Trading Member
+                    </div>
                 </div>
-                <div class="topic-item">
-                    <h3>Execution & Performance</h3>
-                    <p>The only thing you can control in trading, is how you execute and the mindset you bring to the table.</p>
+
+                <div class="review-card">
+                    <div class="review-text">
+                        <span class="preview">"I recently met Matthew not too long ago. I introduced myself at the gym and asked him about the trading he does. He sat there and spoke to us for about 20 minutes about it all. Matthew came over to my house and spent 3 hours going over futures and charts..."</span>
+                        <span class="full">"I recently met Matthew not too long ago. I introduced myself at the gym and asked him about the trading he does. He sat there and spoke to us for about 20 minutes about it all. Matthew came over to my house and spent 3 hours going over futures and charts with my brother Blake and I so we got a real understanding of how everything works. He told us he was going start a discord and wanted us to join so he could teach us and we could learn from him. Our first week with GM trading I was green all 5 days (M-F). The first week was over a $10,000 week. Not only is Matthew making my life better but also increasing the quality of my kids' lives as well. I can not thank Matthew enough for helping us succeed at such a fast pace. If you are looking for a good teacher and someone to break it all down and explain it to you, Matthew is the guy!"</span>
+                    </div>
+                    <button class="review-toggle" onclick="toggleReview(this)">Read full testimonial &rarr;</button>
+                    <div class="review-who">
+                        <strong>Name Placeholder</strong>
+                        GM Trading Member
+                    </div>
                 </div>
-                <div class="topic-item">
-                    <h3>Risk Management</h3>
-                    <p>Risk management is often a synonym for trading. Learn how to handle losses like a pro.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <section class="mentorship-intro" id="mentorship">
+        <div class="container">
+            <div class="reveal">
+                <div class="label">1-on-1 Mentorship</div>
+                <div class="mentorship-intro-body">
+                    <h2>Real mentorship, not a recycled course</h2>
+                    <p>My 1-on-1 mentorship is built around you. Not a template, not a pre-recorded course, not some generic curriculum I run every single student through. You bring what you're working on, what you're stuck on, and where you want to go, and we build from there.</p>
+                    <p>I've been where you are. I blew up accounts for years before anything clicked. My goal is to save you years of that by showing you what actually matters, how I think through the markets in real time, and how to build the habits and mindset that separate profitable traders from everyone else.</p>
+                    <p>Whether you're brand new and want a clear starting point, or you've been trading for a while and need someone to help you sharpen the areas holding you back, I'm here to guide you through it.</p>
                 </div>
-                <div class="topic-item">
-                    <h3>Market Concepts</h3>
-                    <p>Understandal the smart money concepts in trading and how to apply them.</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <section class="benefits">
+        <div class="container">
+            <div class="reveal">
+                <div class="label">Why 1-on-1</div>
+                <h2>What you actually get</h2>
+                <p class="benefits-sub">Group courses teach you theory. 1-on-1 is where you actually get better, because everything is built around where you're at.</p>
+            </div>
+            <div class="benefits-grid reveal">
+                <div class="benefit-card">
+                    <div class="benefit-num">01</div>
+                    <div>
+                        <h3>Personalized guidance</h3>
+                        <p>Every session is tailored to your level, your goals, and the specific things you're struggling with. No generic lessons.</p>
+                    </div>
                 </div>
-                <div class="topic-item">
-                    <h3>Reading the Chart</h3>
-                    <p>How to readthe chart like a book and know exactly what your looking at instead of guessing</p>
+                <div class="benefit-card">
+                    <div class="benefit-num">02</div>
+                    <div>
+                        <h3>Real-time feedback</h3>
+                        <p>Bring your charts and your trades. I'll tell you exactly what I see, what I'd do differently, and why.</p>
+                    </div>
                 </div>
-                <div class="topic-item">
-                    <h3>Getting Funded and Paid</h3>
-                    <p>I've perosnally passed over 50 prop firm evaluations(and blown probably 50:]). I'll walk you through the process and what it takes to stay funded, and handle live accounts.</p>
+                <div class="benefit-card">
+                    <div class="benefit-num">03</div>
+                    <div>
+                        <h3>Hands-on learning</h3>
+                        <p>We work through real setups on live markets. You'll see how I actually think through a trade, not just hear about it.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-num">04</div>
+                    <div>
+                        <h3>Accountability</h3>
+                        <p>Trading alone is hard. I'll keep you on track, push you when you need it, and call you out when you're making excuses.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-num">05</div>
+                    <div>
+                        <h3>Direct access</h3>
+                        <p>You're not one of 100 students. You get me, my time, and my full attention every session.</p>
+                    </div>
+                </div>
+                <div class="benefit-card">
+                    <div class="benefit-num">06</div>
+                    <div>
+                        <h3>No fluff</h3>
+                        <p>I'm not selling you a dream. I'll be straight with you about what it takes and what you need to work on.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <section class="expect">
+        <div class="container">
+            <div class="reveal">
+                <div class="label">What to Expect</div>
+                <h2>What we'll cover together</h2>
+                <p class="expect-sub">Every session is tailored to you, but these are the areas I cover most depending on where you're at. We'll hit whatever moves the needle for you.</p>
+            </div>
+            <div class="expect-list reveal">
+                <div class="expect-item">
+                    <div class="expect-num">01</div>
+                    <div class="expect-content">
+                        <h3>Initial Assessment</h3>
+                        <p>Before we dive in, I figure out exactly where you're at. Your experience, your struggles, your goals. This is how I know where to focus your time.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-num">02</div>
+                    <div class="expect-content">
+                        <h3>Mindset & Psychology</h3>
+                        <p>The mental game is where 99% of traders fall off, and it's why most traders lose. We'll build the discipline and emotional control you need.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-num">03</div>
+                    <div class="expect-content">
+                        <h3>Reading the Chart</h3>
+                        <p>How to read the chart like a book and know exactly what you're looking at instead of guessing. This is the foundation of everything.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-num">04</div>
+                    <div class="expect-content">
+                        <h3>Smart Money Concepts</h3>
+                        <p>Liquidity, market structure, order flow, session bias. Understanding how the market actually moves, not just what lagging indicators say.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-num">05</div>
+                    <div class="expect-content">
+                        <h3>Execution & Performance</h3>
+                        <p>The only thing you can control is your execution and the mindset you bring. We'll sharpen both so you stop leaving money on the table.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-num">06</div>
+                    <div class="expect-content">
+                        <h3>Risk Management</h3>
+                        <p>Stop losses, position sizing, account rules. The boring stuff that keeps you in the game long enough to actually get good.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-num">07</div>
+                    <div class="expect-content">
+                        <h3>Trading Strategies</h3>
+                        <p>We'll go through the strategies that actually work, whether you're swing trading, day trading futures, or trading crypto.</p>
+                    </div>
+                </div>
+                <div class="expect-item">
+                    <div class="expect-num">08</div>
+                    <div class="expect-content">
+                        <h3>Getting Funded & Staying Paid</h3>
+                        <p>I've passed over 50 prop firm evals (and blown about 50). I'll walk you through exactly how to pass, stay funded, and handle live accounts.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="sep"></div>
+
+    <section class="sessions" id="sessions">
+        <div class="container">
+            <div class="reveal">
+                <div class="label">Book a Session</div>
+                <h2>Work with me</h2>
+                <p class="sessions-desc">Right now I offer two options depending on what you need. Every session is private, 1-on-1, and tailored exactly to where you're at.</p>
+            </div>
+            <div class="session-options reveal">
+                <div class="session-card">
+                    <div class="session-type">1-on-1 Quick Call</div>
+                    <h3>30-Minute Session</h3>
+                    <div class="price">$150</div>
+                    <div class="duration">30 minutes · Google Meet, Discord, or In-person</div>
+                    <p class="desc">This is a quicker 30-minute session built to get you answers fast. If you're already experience and have specific things and areas you have questions about and want advice on, we can go over all of it. Bring your charts, your questions, or whatever you're stuck on and we'll dive right in. Whether it's getting your mind right, assessing your system, or getting a second opinion on your trading, these 30 minutes are all yours. If you're newer to trading, I have a full game plan already for you if needed, where I'll break things down and give you a clear next step to work on. Either way, you'll leave this call a better trader than you came in as, with something actionable you can start applying today.</p>
+                    <a href="https://calendly.com/mattygtrading" target="_blank" class="session-btn outline">Book a quick call</a>
+                </div>
+                <div class="session-card highlight">
+                    <div class="session-type">1-on-1 Full Deep Dive</div>
+                    <h3>1-Hour Session</h3>
+                    <div class="price">$250</div>
+                    <div class="duration">60 minutes · Google Meet, Discord or In-person</div>
+                    <div class="session-promo">Use code FIRST1 when booking for $100 off your first hour!</div>
+                    <p class="desc">This is a full 1 hour session and a deep dive into your trading journey. If you're already experienced and have specific things and areas you have questions about and want advice on, we can go over everything, sharpen those areas, and get you headed in the proper direction to be more profitable. If you're just getting started, I already have a full game plan ready to go for you if needed. We'll get your mindset right, break down my strategies, cover everything you need to know to be a successful trader, and walk through exactly how I stay consistently profitable. Either way, you'll leave this call a better trader than you came in, with something actionable you can start applying today.</p>
+                    <a href="https://calendly.com/mattygtrading" target="_blank" class="session-btn fill">Book a 1-on-1</a>
                 </div>
             </div>
         </div>
@@ -280,7 +475,7 @@
             <div class="reveal">
                 <div class="label">Community</div>
                 <h2>You don't have to trade alone</h2>
-                <p class="community-desc">I started premium trading community on Discord to be the place I wish I had when I was trying to become profitable. Lots of serious traders connect, share ideas, and hold each other accountable. It's not a late signals group, or a ploy to make money, it's genuinely a place full of like-minded people, alltrying to get better every day.</p>
+                <p class="community-desc">I started premium trading community on Discord to be the place I wish I had when I was trying to become profitable. Lots of serious traders connect, share ideas, and hold each other accountable. It's not a late signals group, or a ploy to make money, it's genuinely a place full of like-minded people, all trying to get better every day.</p>
             </div>
             <div class="community-perks reveal">
                 <div class="perk">
@@ -307,53 +502,6 @@
             </div>
             <a href="https://discord.gg/gHzhUks4" class="community-cta reveal" target="_blank">Join the GM Community <span class="arrow">&rarr;</span></a>
             <a href="https://whop.com/gm-trading-vip/vip-trader-auth?a=themattyg" class="community-cta reveal" target="_blank">Join the VIP Discord <span class="arrow">&rarr;</span></a>
-        </div>
-    </section>
-
-    <div class="sep"></div>
-
-    <section class="reviews" id="testimonials">
-        <div class="container">
-            <div class="reveal">
-                <div class="label">What people say</div>
-                <h2>From traders I've worked with</h2>
-            </div>
-            <div class="reveal">
-                <div class="reviews-placeholder">
-                    Testimonials uploading soon...
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="sep"></div>
-
-    <section class="sessions" id="sessions">
-        <div class="container">
-            <div class="reveal">
-                <div class="label">Mentorship</div>
-                <h2>Work with me</h2>
-                <p class="sessions-desc">Right now I offer two options depending on what you need. Every session is private, 1-on-1, and tailored exactly to where you're at.</p>
-            </div>
-            <div class="session-options reveal">
-                <div class="session-card">
-                    <div class="session-type">1-on-1 Quick Call</div>
-                    <h3>30-Minute Session</h3>
-                    <div class="price">$150</div>
-                    <div class="duration">30 minutes · Google Meet, Discord, or In-person</div>
-                    <p class="desc">This is a quicker 30-minute session built to get you answers fast. If you're already experience and have specific things and areas you have questions about and want advice on, we can go over all of it. Bring your charts, your questions, or whatever you're stuck on and we'll dive right in. Whether it's getting your mind right, assessing your system, or getting a second opinion on your trading, these 30 minutes are all yours. If you're newer to trading, I have a full game plan already for you if needed, where I'll break things down and give you a clear next step to work on. Either way, you'll leave this call a better trader than you came in as, with something actionable you can start applying today.</p>
-                    <a href="https://calendly.com/mattygtrading" target="_blank" class="session-btn outline">Book a quick call</a>
-                </div>
-                <div class="session-card">
-                    <div class="session-type">1-on-1 Full Deep Dive</div>
-                    <h3>1-Hour Session</h3>
-                    <div class="price">$250</div>
-                    <div class="duration">60 minutes · Google Meet, Discord or In-person</div>
-                    <div class="session-promo">Use code FIRST1 when booking for $100 off your first hour!</div>
-                    <p class="desc">This is a full 1 hour session and a deep dive into your trading journey. If you're already experienced and have specific things and areas you have questions about and want advice on, we can go over everything, sharpen those areas, and get you headed in the proper direction to be more profitable. If you're just getting started, I already have a full game plan ready to go for you if needed. We'll get your mindset right, break down my strategies, cover everything you need to know to be a successful trader, and walk through exactly how I stay consistently profitable. Either way, you'll leave this call a better trader than you came in, with something actionable you can start applying today.</p>
-                    <a href="https://calendly.com/mattygtrading" target="_blank" class="session-btn fill">Book a 1-on-1</a>
-                </div>
-            </div>
         </div>
     </section>
 
@@ -416,7 +564,6 @@
                 <a href="https://instagram.com/mattygtrades" target="_blank">Instagram</a>
                 <a href="https://discord.gg/YxE64nN9" target="_blank">Discord</a>
                 <a href="https://twitter.com/themattyg" target="_blank">Twitter</a>
-
             </div>
         </div>
     </footer>
@@ -425,6 +572,7 @@
         window.addEventListener('scroll', () => { document.querySelector('nav').classList.toggle('scrolled', scrollY > 60); });
         document.querySelectorAll('.nav-right a').forEach(a => { a.addEventListener('click', () => document.querySelector('.nav-right').classList.remove('open')); });
         function toggleFaq(el) { const item = el.parentElement; const open = item.classList.contains('open'); document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open')); if (!open) item.classList.add('open'); }
+        function toggleReview(btn) { const card = btn.closest('.review-card'); card.classList.toggle('expanded'); btn.innerHTML = card.classList.contains('expanded') ? 'Show less &uarr;' : 'Read full testimonial &rarr;'; }
         const obs = new IntersectionObserver(entries => { entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('vis'); }); }, { threshold: 0.1 });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
