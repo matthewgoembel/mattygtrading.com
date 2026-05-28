@@ -104,36 +104,42 @@
         .benefit-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
         .benefit-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
 
-        /* WHAT TO EXPECT */
-        .expect { background: var(--bg); }
-        .expect h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
-        .expect-sub { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
-        .expect-list { max-width: 720px; display: flex; flex-direction: column; gap: 1.5rem; }
-        .expect-item { display: flex; gap: 1.5rem; align-items: flex-start; padding-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
-        .expect-item:last-child { border-bottom: none; padding-bottom: 0; }
-        .expect-num { font-family: var(--mono); font-size: 0.8rem; color: var(--accent); min-width: 28px; padding-top: 0.25rem; }
-        .expect-content h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.4rem; }
-        .expect-content p { font-size: 0.92rem; color: var(--text-mid); line-height: 1.7; }
-
-        /* SESSIONS */
+        /* SESSIONS — NEW MENTORSHIP PACKAGES */
         .sessions { background: var(--bg-raised); }
         .sessions h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
         .sessions-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
-        .session-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 780px; }
-        .session-card { border: 1px solid var(--line); border-radius: 12px; padding: 2.5rem 2rem; background: var(--bg); transition: all 0.35s; }
-        .session-card:hover { border-color: rgba(232,135,58,0.2); background: var(--bg-subtle); }
-        .session-card.highlight { border-color: rgba(232,135,58,0.3); background: var(--bg-subtle); }
-        .session-type { font-family: var(--mono); font-size: 0.72rem; color: var(--accent); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1rem; }
-        .session-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: 0.8rem; letter-spacing: -0.5px; }
-        .session-card .price { font-family: var(--mono); font-size: 2rem; font-weight: 500; margin-bottom: 0.3rem; }
-        .session-card .duration { font-size: 0.82rem; color: var(--text-dim); margin-bottom: 1.5rem; }
-        .session-card .desc { color: var(--text-mid); font-size: 0.9rem; line-height: 1.7; margin-bottom: 1.8rem; }
-        .session-promo { display: inline-block; font-family: var(--mono); font-size: 0.75rem; color: var(--accent-bright); background: var(--accent-soft); border: 1px solid rgba(232,135,58,0.15); padding: 0.3rem 0.7rem; border-radius: 5px; margin-bottom: 1.5rem; }
-        .session-btn { display: block; width: 100%; text-align: center; padding: 0.8rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; font-family: var(--font); cursor: pointer; transition: all 0.25s; border: none; }
-        .session-btn.fill { background: var(--accent); color: var(--bg); }
-        .session-btn.fill:hover { box-shadow: 0 4px 24px var(--accent-glow); transform: translateY(-1px); }
-        .session-btn.outline { background: transparent; color: var(--text); border: 1px solid var(--line); }
-        .session-btn.outline:hover { border-color: var(--accent); color: var(--accent); }
+        .session-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 860px; }
+
+        .pkg-card { border: 1px solid var(--line); border-radius: 12px; padding: 2.5rem 2rem; background: var(--bg); transition: all 0.35s; display: flex; flex-direction: column; gap: 1.4rem; }
+        .pkg-card:hover { border-color: rgba(232,135,58,0.2); background: var(--bg-subtle); }
+        .pkg-card.highlight { border-color: rgba(232,135,58,0.35); background: var(--bg-subtle); }
+
+        .pkg-badge { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase; }
+        .pkg-badge.standard { color: var(--text-dim); }
+        .pkg-badge.popular { color: var(--accent); }
+
+        .pkg-card h3 { font-size: 1.5rem; font-weight: 700; letter-spacing: -0.5px; margin: 0; }
+        .pkg-meta { font-size: 0.82rem; color: var(--text-dim); }
+
+        .pkg-desc { color: var(--text-mid); font-size: 0.9rem; line-height: 1.75; }
+
+        .pkg-divider { height: 1px; background: var(--line); }
+
+        .pkg-features-label { font-family: var(--mono); font-size: 0.68rem; letter-spacing: 1.5px; text-transform: uppercase; color: var(--text-dim); }
+        .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 0.7rem; }
+        .pkg-features li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.88rem; color: var(--text-mid); line-height: 1.5; }
+        .pkg-features li::before { content: '—'; font-family: var(--mono); color: var(--accent); font-size: 0.8rem; flex-shrink: 0; padding-top: 0.05rem; }
+
+        .pkg-discord { display: flex; align-items: flex-start; gap: 0.9rem; background: rgba(88,101,242,0.07); border: 1px solid rgba(88,101,242,0.15); border-radius: 8px; padding: 1rem 1.2rem; }
+        .pkg-discord-icon { font-family: var(--mono); font-size: 0.75rem; color: #7289da; padding-top: 0.1rem; flex-shrink: 0; }
+        .pkg-discord p { font-size: 0.84rem; color: var(--text-mid); line-height: 1.55; margin: 0; }
+        .pkg-discord strong { color: var(--text); font-weight: 600; }
+
+        .pkg-btn { display: block; width: 100%; text-align: center; padding: 0.85rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; font-family: var(--font); cursor: pointer; transition: all 0.25s; border: none; margin-top: auto; }
+        .pkg-btn.outline { background: transparent; color: var(--text); border: 1px solid var(--line); }
+        .pkg-btn.outline:hover { border-color: var(--accent); color: var(--accent); }
+        .pkg-btn.fill { background: var(--accent); color: var(--bg); border: none; }
+        .pkg-btn.fill:hover { box-shadow: 0 4px 24px var(--accent-glow); transform: translateY(-1px); }
 
         /* COMMUNITY */
         .community { background: var(--bg); }
@@ -208,7 +214,7 @@
                 <a href="#mentorship">Mentorship</a>
                 <a href="#sessions">Sessions</a>
                 <a href="#community">Community</a>
-                <a href="#sessions" class="nav-book">Book a session</a>
+                <a href="#sessions" class="nav-book">Apply now</a>
             </div>
             <div class="hamburger" onclick="document.querySelector('.nav-right').classList.toggle('open')">
                 <span></span><span></span><span></span>
@@ -305,7 +311,7 @@
                     <h2>Real Personalized Mentorship</h2>
                     <p>My 1-on-1 mentorships are built around you. No templates or pre-recorded generic courses. This is 100% catered to you. You bring your trading experience, what you feel is holding you back, things you want to address, where you want to be, and we build from there.</p>
                     <p>As a very independent person myself, I never wanted to ask anyone for help. I wanted to figure it all out myself. That mindset cost me years and led me down a much harder path than it had to. If I had just asked someone who was already where I wanted to be, I would've saved myself a ton of pain.</p>
-                    <p>The good thing about that is I've probably been where you are. I blew up accounts for years before anything clicked. My main goal is to save you from that by showing you exactly how to be successful,  what actually matters, how I think through the markets in real time, and how to build the habits and mindset that separate successful traders from everyone else.</p>
+                    <p>The good thing about that is I've probably been where you are. I blew up accounts for years before anything clicked. My main goal is to save you from that by showing you exactly how to be successful, what actually matters, how I think through the markets in real time, and how to build the habits and mindset that separate successful traders from everyone else.</p>
                     <p>Whether you're brand new and need a clear starting point, or you've been trading for a while and need someone to help you address the areas holding you back and get that switch to flip in your head, I'm here to guide you through it.</p>
                 </div>
             </div>
@@ -369,100 +375,66 @@
     </section>
 
     <div class="sep"></div>
-<!--
-    <section class="expect">
-        <div class="container">
-            <div class="reveal">
-                <div class="label">What to Expect</div>
-                <h2>What we'll cover together</h2>
-                <p class="expect-sub">Every session is tailored to you, but these are the areas of trading that I'll probably cover most, depending on where you're at. We'll hit the parts and areas that you and I see fit.</p>
-            </div>
-            <div class="expect-list reveal">
-                <div class="expect-item">
-                    <div class="expect-num">01</div>
-                    <div class="expect-content">
-                        <h3>Initial Assessment</h3>
-                        <p>Before we dive in, I'll figure out exactly where you're at. Your experience, your struggles, your goals. This is how I know where to focus your time.</p>
-                    </div>
-                </div>
-                <div class="expect-item">
-                    <div class="expect-num">02</div>
-                    <div class="expect-content">
-                        <h3>Mindset & Psychology</h3>
-                        <p>The mental game is the most overlooked aspect in trading. It is where 99% of traders fail, and why most traders lose. We'll build the discipline, emotional control, and that trader's state of mind you need.</p>
-                    </div>
-                </div>
-                <div class="expect-item">
-                    <div class="expect-num">03</div>
-                    <div class="expect-content">
-                        <h3>Technical Analysis and Charting</h3>
-                        <p>I'll show you how to read the chart like a book and know what you're looking at instead of guessing. This is the foundation of everything, and how you are choosing your trades.</p>
-                    </div>
-                </div>
-                <div class="expect-item">
-                    <div class="expect-num">04</div>
-                    <div class="expect-content">
-                        <h3>ICT, Markets, and Smart Money Concepts</h3>
-                        <p>Understanding things like Liquidity, market structure, order flow, session bias, etc., is essential. Knowing how the market actually moves, why things are happening... Not just what lagging indicators say.</p>
-                    </div>
-                </div>
-                <div class="expect-item">
-                    <div class="expect-num">05</div>
-                    <div class="expect-content">
-                        <h3>Execution & Performance</h3>
-                        <p>The only thing you can control is your execution and the mindset you bring. This is a hard concept for us because our brain always wants to control every scenario we encounter. We'll get this on point.</p>
-                    </div>
-                </div>
-                <div class="expect-item">
-                    <div class="expect-num">06</div>
-                    <div class="expect-content">
-                        <h3>Risk Management</h3>
-                        <p>Stop losses, position sizing, personal rules, trade checklists. The boring stuff that traders like to neglect, but what keeps you in the game long enough to let you actually trade successfully and profitably.</p>
-                    </div>
-                </div>
-                <div class="expect-item">
-                    <div class="expect-num">07</div>
-                    <div class="expect-content">
-                        <h3>Trading Strategies</h3>
-                        <p>Everyone sees the charts differently, so no one will have the exact same thought process for taking a trade, though they can be very similar. But I will go through my strategy and other strategies that actually work, if needed, regardless of the markets and timeframes you're trading.</p>
-                    </div>
-                </div>
-                <div class="expect-item">
-                    <div class="expect-num">08</div>
-                    <div class="expect-content">
-                        <h3>Application</h3>
-                        <p> Whether it's a simulated, live, or funded account, I'll help you practice and apply your skills, and guide you to success when you trade live</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div class="sep"></div>-->
 
     <section class="sessions" id="sessions">
         <div class="container">
             <div class="reveal">
-                <div class="label">Book a Session</div>
-                <h2>Work with me</h2>
-                <p class="sessions-desc">Right now, I offer two options depending on what you need. Every session is private, 1-on-1, and tailored exactly to where you're at.</p>
+                <div class="label">Work with me</div>
+                <h2>Pick your program</h2>
+                <p class="sessions-desc">Flat rate. No hourly. I'm in your corner every single day — we trade together, I break down your charts, fix your mindset, and we don't stop until you're dialed in.</p>
             </div>
-            
+
             <div class="session-options reveal">
-                <div class="session-card">
-                    <div class="session-type">1-on-1 Quick Session w/Matthew</div>
-                    <h3>30-Minute Session</h3>
-                    <div class="duration">30 minutes · Google Meet, Discord, or In-person</div>
-                    <p class="desc">This is a quicker 30-minute session built to get you answers fast. If you're already experienced and have specific things and areas you have questions about and want advice on, we can go over all of it. Bring your charts, your questions, or whatever you're stuck on and we'll dive right in. Whether it's getting your mind right, assessing your system, or getting a second opinion on your trading, these 30 minutes are all yours. If you're newer to trading, I have a full game plan already for you if needed, where I'll break things down and give you a clear next step to work on. Either way, you'll leave this call a better trader than you came in as, with something actionable you can start applying today.</p>
-                    <a href="https://calendly.com/mattygtrading" target="_blank" class="session-btn outline">Book a 1-on-1</a>
+
+                <div class="pkg-card">
+                    <div>
+                        <div class="pkg-badge standard">Kickstart</div>
+                    </div>
+                    <h3>2-Week Program</h3>
+                    <div class="pkg-meta">2 weeks &middot; Google Meet or Discord</div>
+                    <p class="pkg-desc">Two focused weeks to lock in your foundation. We trade together every day, break down your charts, and get you thinking like a smart money trader before we're done.</p>
+                    <div class="pkg-divider"></div>
+                    <div class="pkg-features-label">What's included</div>
+                    <ul class="pkg-features">
+                        <li>2 x 1-on-1 coaching calls (1hr each)</li>
+                        <li>Daily trading sessions together</li>
+                        <li>Daily bias reviews &amp; market breakdowns</li>
+                        <li>Chart markup &amp; live trade feedback</li>
+                        <li>Mindset &amp; consistency coaching</li>
+                        <li>Full access to Trading From Zero course</li>
+                    </ul>
+                    <div class="pkg-discord">
+                        <div class="pkg-discord-icon">DC</div>
+                        <p><strong>2 weeks free</strong> in MattyG's Matrix — live alerts, daily sessions &amp; the full premium community</p>
+                    </div>
+                    <a href="#" class="pkg-btn outline">Apply now</a>
                 </div>
-                <div class="session-card highlight">
-                    <div class="session-type">1-on-1 Full Session w/Matthew</div>
-                    <h3>1-Hour Session</h3>
-                    <div class="duration">60 minutes · Google Meet, Discord or In-person</div>
-                    <p class="desc">This is a full 1 hour session and a deep dive into your trading journey. If you're already experienced and have specific things and areas you have questions about and want advice on, we can go over everything, sharpen those areas, and get you headed in the proper direction to be more profitable. If you're just getting started, I already have a full game plan ready to go for you if needed. We'll get your mindset right, break down my strategies, cover everything you need to know to be a successful trader, and walk through exactly how I stay consistently profitable. Either way, you'll leave this call a better trader than you came in, with something actionable you can start applying today.</p>
-                    <a href="https://calendly.com/mattygtrading" target="_blank" class="session-btn fill">Book a 1-on-1</a>
+
+                <div class="pkg-card highlight">
+                    <div>
+                        <div class="pkg-badge popular">Most Popular</div>
+                    </div>
+                    <h3>4-Week Program</h3>
+                    <div class="pkg-meta">4 weeks &middot; Google Meet or Discord</div>
+                    <p class="pkg-desc">A full month trading side by side. We build your system, sharpen your edge, and fix your mental game. We don't stop until you're consistently making the right moves.</p>
+                    <div class="pkg-divider"></div>
+                    <div class="pkg-features-label">What's included</div>
+                    <ul class="pkg-features">
+                        <li>4 x 1-on-1 coaching calls (1hr each)</li>
+                        <li>Daily trading sessions together</li>
+                        <li>Daily bias reviews &amp; market breakdowns</li>
+                        <li>Chart markup &amp; live trade feedback</li>
+                        <li>Full trading system build tailored to you</li>
+                        <li>Mindset &amp; consistency coaching</li>
+                        <li>Full access to Trading From Zero course</li>
+                    </ul>
+                    <div class="pkg-discord">
+                        <div class="pkg-discord-icon">DC</div>
+                        <p><strong>4 weeks free</strong> in MattyG's Matrix — live alerts, daily sessions &amp; the full premium community</p>
+                    </div>
+                    <a href="#" class="pkg-btn fill">Apply now</a>
                 </div>
+
             </div>
         </div>
     </section>
@@ -487,7 +459,7 @@
                 <div class="perk">
                     <div class="perk-icon">02</div>
                     <div>
-                        <h3>Daily analysis & calls</h3>
+                        <h3>Daily analysis &amp; calls</h3>
                         <p>I share all the trades I am taking before I take them. I share daily alpha, key levels, and bias, posted before the market opens.</p>
                     </div>
                 </div>
@@ -499,8 +471,8 @@
                     </div>
                 </div>
             </div>
-            <a href="https://discord.gg/xS6gtcyW7X" class="community-cta reveal" target="_blank">Join the GM Community <span class="arrow">&rarr;</span></a>
-            <a href="https://whop.com/gm-trading-vip/vip-trader-auth?a=themattyg" class="community-cta reveal" target="_blank">Get VIP access<span class="arrow">&rarr;</span></a>
+            <a href="https://discord.gg/xS6gtcyW7X" class="community-cta reveal" target="_blank">Join the GM Community &rarr;</a>
+            <a href="https://whop.com/gm-trading-vip/vip-trader-auth?a=themattyg" class="community-cta reveal" target="_blank">Get VIP access &rarr;</a>
         </div>
     </section>
 
@@ -522,20 +494,20 @@
                     <div class="faq-a">Bring your charts, your trade journal (if you have one), your questions, and anything you've got and want me to take a look at. If you're a beginner, just show up motivated to learn and an open mind, and I'll take it from there. Having TradingView downloaded and set up is helpful but not required.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-q" onclick="toggleFaq(this)">How does the FIRST1 code work?<span class="icon">+</span></div>
-                    <div class="faq-a">Enter FIRST1 when booking your first 1-hour session on Calendly, and you'll pay $100 instead of $250:) It's only valid on the 1-hour session and only for first-time bookings.</div>
+                    <div class="faq-q" onclick="toggleFaq(this)">How does the mentorship work day-to-day?<span class="icon">+</span></div>
+                    <div class="faq-a">We trade together every morning via Discord or Google Meet. You get daily bias breakdowns, real-time chart feedback, and we do a weekly 1-on-1 call to review your progress, dial in your system, and address anything you're struggling with. You also get full access to the premium Discord so you're in the community the whole time.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-q" onclick="toggleFaq(this)">Which program should I pick?<span class="icon">+</span></div>
+                    <div class="faq-a">If you're newer to trading or just want to get a solid foundation built fast, the 2-week is a great starting point. If you're serious about fully overhauling your trading, building a real system, and want the most time with me, the 4-week is where most people see the biggest transformation.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q" onclick="toggleFaq(this)">What's the refund policy?<span class="icon">+</span></div>
-                    <div class="faq-a">Refunds are available up to 24 hours before the session. No refunds within 24 hours. Rescheduling is allowed up to 24 hours in advance. No-shows will not be refunded.</div>
+                    <div class="faq-a">Refunds are available up to 24 hours before the program start date. No refunds once the program has begun.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q" onclick="toggleFaq(this)">What markets do you trade?<span class="icon">+</span></div>
-                    <div class="faq-a">Primarily futures on $Nasdaq and $S&P500, Crypto Futures, and some high-cap stocks and commodities. But the principles and concepts I teach, liquidity, technical analysis, risk management, mindset, etc., work across all markets and any avenue of trading.</div>
-                </div>
-                <div class="faq-item">
-                    <div class="faq-q" onclick="toggleFaq(this)">Can I book more than one session?<span class="icon">+</span></div>
-                    <div class="faq-a">Absolutely, A lot of people do, and I actually recommend it. You can book as many sessions as you want through the Calendly page. Let me know if you plan to do more than 3, and we can work out a bulk discount!</div>
+                    <div class="faq-a">Primarily futures on $Nasdaq and $S&amp;P500, Crypto Futures, and some high-cap stocks and commodities. But the principles and concepts I teach, liquidity, technical analysis, risk management, mindset, etc., work across all markets and any avenue of trading.</div>
                 </div>
             </div>
         </div>
@@ -545,9 +517,9 @@
         <div class="container">
             <div class="bottom-cta-inner reveal">
                 <h2>Ready when you are.</h2>
-                <p>Trading can give you the freedom you're looking for to live on your own terms and not have to be part of the rat race. If you're serious about getting better at this and truly want to change your life, let's talk. Pick a time that works, and I'll look forward to meeting you!</p>
+                <p>Trading can give you the freedom you're looking for to live on your own terms and not have to be part of the rat race. If you're serious about getting better at this and truly want to change your life, let's talk. Apply below and I'll be in touch.</p>
                 <div class="bottom-buttons">
-                    <a href="https://calendly.com/mattygtrading" target="_blank" class="cta-main">Book a session &rarr;</a>
+                    <a href="#sessions" class="cta-main">Apply now &rarr;</a>
                     <a href="#about" class="cta-alt">Learn more about me</a>
                 </div>
             </div>
