@@ -104,11 +104,11 @@
         .benefit-card h3 { font-size: 1rem; font-weight: 600; margin-bottom: 0.4rem; }
         .benefit-card p { font-size: 0.88rem; color: var(--text-dim); line-height: 1.6; }
 
-        /* SESSIONS — NEW MENTORSHIP PACKAGES */
+        /* SESSIONS — 1-DAY DEEP DIVE */
         .sessions { background: var(--bg-raised); }
         .sessions h2 { font-size: 2rem; font-weight: 700; letter-spacing: -1px; margin-bottom: 0.8rem; }
         .sessions-desc { color: var(--text-mid); font-size: 1rem; line-height: 1.7; max-width: 520px; margin-bottom: 3rem; }
-        .session-options { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; max-width: 860px; }
+        .session-options { display: grid; grid-template-columns: 1fr; gap: 1.5rem; max-width: 460px; margin: 0 auto; }
 
         .pkg-card { border: 1px solid var(--line); border-radius: 12px; padding: 2.5rem 2rem; background: var(--bg); transition: all 0.35s; display: flex; flex-direction: column; gap: 1.4rem; }
         .pkg-card:hover { border-color: rgba(232,135,58,0.2); background: var(--bg-subtle); }
@@ -134,6 +134,12 @@
         .pkg-discord-icon { font-family: var(--mono); font-size: 0.75rem; color: #7289da; padding-top: 0.1rem; flex-shrink: 0; }
         .pkg-discord p { font-size: 0.84rem; color: var(--text-mid); line-height: 1.55; margin: 0; }
         .pkg-discord strong { color: var(--text); font-weight: 600; }
+
+        /* PRICE */
+        .pkg-price { display: flex; align-items: baseline; gap: 0.6rem; flex-wrap: wrap; }
+        .pkg-price-old { font-family: var(--mono); font-size: 0.85rem; color: var(--text-dim); text-decoration: line-through; text-decoration-color: rgba(232,135,58,0.5); }
+        .pkg-price-now { font-size: 1rem; font-weight: 600; color: var(--text); line-height: 1.2; }
+        .pkg-price-note { font-size: 0.85rem; color: var(--text-mid); margin-top: 0.1rem; line-height: 1.4; }
 
         .pkg-btn { display: block; width: 100%; text-align: center; padding: 0.85rem; border-radius: 8px; font-weight: 600; font-size: 0.88rem; font-family: var(--font); cursor: pointer; transition: all 0.25s; border: none; margin-top: auto; }
         .pkg-btn.outline { background: transparent; color: var(--text); border: 1px solid var(--line); }
@@ -214,7 +220,7 @@
                 <a href="#mentorship">Mentorship</a>
                 <a href="#sessions">Sessions</a>
                 <a href="#community">Community</a>
-                <a href="#sessions" class="nav-book">Apply now</a>
+                <a href="#sessions" class="nav-book">Book a day</a>
             </div>
             <div class="hamburger" onclick="document.querySelector('.nav-right').classList.toggle('open')">
                 <span></span><span></span><span></span>
@@ -380,59 +386,41 @@
         <div class="container">
             <div class="reveal">
                 <div class="label">Work with me</div>
-                <h2>Pick your program</h2>
-                <p class="sessions-desc">Flat rate. No hourly. I'm in your corner every single day — we trade together, I break down your charts, fix your mindset, and we don't stop until you're dialed in.</p>
+                <h2>The 1-Day Deep Dive</h2>
+                <p class="sessions-desc">Flat rate, no hourly. One full day, just you and me — we trade the NY session live together, break down your charts, fix your mindset, and don't stop until it clicks.</p>
             </div>
 
             <div class="session-options reveal">
 
-                <div class="pkg-card">
-                    <div>
-                        <div class="pkg-badge standard">Kickstart</div>
-                    </div>
-                    <h3>2-Week Program</h3>
-                    <div class="pkg-meta">2 weeks &middot; Google Meet or Discord</div>
-                    <p class="pkg-desc">Two focused weeks to lock in your foundation. We trade together every day, break down your charts, and get you thinking like a smart money trader before we're done.</p>
-                    <div class="pkg-divider"></div>
-                    <div class="pkg-features-label">What's included</div>
-                    <ul class="pkg-features">
-                        <li>2 x 1-on-1 coaching calls (1hr each)</li>
-                        <li>Daily trading sessions together</li>
-                        <li>Daily bias reviews &amp; market breakdowns</li>
-                        <li>Chart markup &amp; live trade feedback</li>
-                        <li>Mindset &amp; consistency coaching</li>
-                        <li>Full access to Trading From Zero course</li>
-                    </ul>
-                    <div class="pkg-discord">
-                        <div class="pkg-discord-icon">DC</div>
-                        <p><strong>2 weeks free</strong> in MattyG's Matrix — live alerts, daily sessions &amp; the full premium community</p>
-                    </div>
-                    <a href="#" class="pkg-btn outline">Apply now</a>
-                </div>
-
                 <div class="pkg-card highlight">
                     <div>
-                        <div class="pkg-badge popular">Most Popular</div>
+                        <div class="pkg-badge popular">Limited intro offer</div>
                     </div>
-                    <h3>4-Week Program</h3>
-                    <div class="pkg-meta">4 weeks &middot; Google Meet or Discord</div>
-                    <p class="pkg-desc">A full month trading side by side. We build your system, sharpen your edge, and fix your mental game. We don't stop until you're consistently making the right moves.</p>
+                    <h3>1-Day Deep Dive</h3>
+                    <div class="pkg-meta">One full day &middot; Google Meet or Discord</div>
+                    <p class="pkg-desc">Just you and me, locked in for a day on your trading. I don't like time constraints, so there is no rigid clock and no rushing you out — we go til it clicks, I'm on your time. Mindset, strategy, execution, risk, daily bias, all of it. We'll mark up real charts together and analyze your trades live so you see exactly how I think in real time. You walk out with an actual framework you can run on your own, not just a pep talk.</p>
                     <div class="pkg-divider"></div>
                     <div class="pkg-features-label">What's included</div>
                     <ul class="pkg-features">
-                        <li>4 x 1-on-1 coaching calls (1hr each)</li>
-                        <li>Daily trading sessions together</li>
-                        <li>Daily bias reviews &amp; market breakdowns</li>
-                        <li>Chart markup &amp; live trade feedback</li>
-                        <li>Full trading system build tailored to you</li>
-                        <li>Mindset &amp; consistency coaching</li>
+                        <li>A full day 1-on-1, just you and me</li>
+                        <li>Trade the NY session live, side by side</li>
+                        <li>Daily bias &amp; full market breakdown</li>
+                        <li>Chart markup &amp; real-time trade feedback</li>
+                        <li>Mindset, risk &amp; execution coaching</li>
+                        <li>A clear framework you can run solo</li>
                         <li>Full access to Trading From Zero course</li>
                     </ul>
                     <div class="pkg-discord">
                         <div class="pkg-discord-icon">DC</div>
-                        <p><strong>4 weeks free</strong> in MattyG's Matrix — live alerts, daily sessions &amp; the full premium community</p>
+                        <p><strong>1 week free</strong> in GM Trading — live alerts, daily sessions &amp; the full premium community</p>
                     </div>
-                    <a href="#" class="pkg-btn fill">Apply now</a>
+                    <div class="pkg-divider"></div>
+                    <div class="pkg-price">
+                        <span class="pkg-price-old">$1,000</span>
+                        <span class="pkg-price-now">$249</span>
+                    </div>
+                    <div class="pkg-price-note">Limited intro rate — price goes up soon</div>
+                    <a href="#" class="pkg-btn fill">Book a day</a>
                 </div>
 
             </div>
@@ -494,16 +482,16 @@
                     <div class="faq-a">Bring your charts, your trade journal (if you have one), your questions, and anything you've got and want me to take a look at. If you're a beginner, just show up motivated to learn and an open mind, and I'll take it from there. Having TradingView downloaded and set up is helpful but not required.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-q" onclick="toggleFaq(this)">How does the mentorship work day-to-day?<span class="icon">+</span></div>
-                    <div class="faq-a">We trade together every morning via Discord or Google Meet. You get daily bias breakdowns, real-time chart feedback, and we do a weekly 1-on-1 call to review your progress, dial in your system, and address anything you're struggling with. You also get full access to the premium Discord so you're in the community the whole time.</div>
+                    <div class="faq-q" onclick="toggleFaq(this)">How does the day work?<span class="icon">+</span></div>
+                    <div class="faq-a">We hop on Discord or Google Meet and lock in for a full day. We trade the NY session live together, I break down your charts and bias in real time, walk you through my exact thought process, and we work through whatever's holding you back. By the end you've got a framework you can actually run on your own. You also get a free week in the premium community so you're not on your own after.</div>
                 </div>
                 <div class="faq-item">
-                    <div class="faq-q" onclick="toggleFaq(this)">Which program should I pick?<span class="icon">+</span></div>
-                    <div class="faq-a">If you're newer to trading or just want to get a solid foundation built fast, the 2-week is a great starting point. If you're serious about fully overhauling your trading, building a real system, and want the most time with me, the 4-week is where most people see the biggest transformation.</div>
+                    <div class="faq-q" onclick="toggleFaq(this)">Who is this for?<span class="icon">+</span></div>
+                    <div class="faq-a">Anyone serious about leveling up fast. Whether you're brand new and need a clear starting point, or you've been trading a while and need someone to find what's holding you back and flip that switch in your head, the whole day is built around you and where you're trying to get.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q" onclick="toggleFaq(this)">What's the refund policy?<span class="icon">+</span></div>
-                    <div class="faq-a">Refunds are available up to 24 hours before the program start date. No refunds once the program has begun.</div>
+                    <div class="faq-a">Refunds are available up to 24 hours before your session date. No refunds once the session has begun.</div>
                 </div>
                 <div class="faq-item">
                     <div class="faq-q" onclick="toggleFaq(this)">What markets do you trade?<span class="icon">+</span></div>
@@ -519,7 +507,7 @@
                 <h2>Ready when you are.</h2>
                 <p>Trading can give you the freedom you're looking for to live on your own terms and not have to be part of the rat race. If you're serious about getting better at this and truly want to change your life, let's talk. Apply below and I'll be in touch.</p>
                 <div class="bottom-buttons">
-                    <a href="#sessions" class="cta-main">Apply now &rarr;</a>
+                    <a href="#sessions" class="cta-main">Book a day &rarr;</a>
                     <a href="#about" class="cta-alt">Learn more about me</a>
                 </div>
             </div>
